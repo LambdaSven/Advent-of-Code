@@ -10,8 +10,7 @@ int main(int argc, char *argv[]){
     
     while(!feof(file)){
         int temp = i;
-        i /= 3;
-        i -= 2;
+        i = i/3 - 2;
         sum += i;
         fscanf(file, "%d", &i);
     }
