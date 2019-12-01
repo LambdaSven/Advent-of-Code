@@ -25,8 +25,7 @@ int main(int argc, char *argv[]){
 //Recursion seemed the obvious choice for this problem
 int calcFuel(int fuel){
     int tempFuel = fuel;
-    tempFuel /= 3;
-    tempFuel -= 2;
+    tempFuel = tempFuel/3 - 2;
     if(tempFuel <= 0){
         return 0;
     } else {
