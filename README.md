@@ -1,6 +1,6 @@
 # Advent of code 2019
 
-These are my solutions to the various advent of code problems.
+I will post my solutions to the Advent of code problems here, an include descriptions in the readme of why I took a particular approach
 
 # Day 1
 __Part 1__
