@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
     
     while(!feof(file)){
         int temp = i;
-        i /= 3;         //Why round down when I can just use integer division
+        i /= 3;
         i -= 2;
         sum += i;
         fscanf(file, "%d", &i);
