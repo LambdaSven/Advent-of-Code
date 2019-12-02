@@ -47,13 +47,12 @@ int* readFile(char *argv, int *len){
     int* ptr = (int*) malloc(sizeof(int));
     int index = 0;
     short terminate = 0;
-    char garbage;
 
     while(terminate == 0){
-        if(fscanf(fp, "%d", ptr+index) == 1){
+        if(fscanf(fp, "%d,", ptr+index) == 1){
             index++;
             ptr = (int*) realloc(ptr, (index+1)*sizeof(int));
-        } else if(fscanf(fp, "%c", &garbage ) != 1){
+        } else {
             terminate = 1;
         }
     }
