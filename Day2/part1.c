@@ -49,8 +49,14 @@ int* readFile(char *argv, int *len){
     
     int* ptr = (int*) malloc(sizeof(int));
     int index = 0;
+    
+    /*
+        fscanf() returns the number of elements scanned, then moves the file pointer
+        we only want to break the loop when it stops reciving valid input, or, when it
+        returns any number other than 1
 
-    //By using "%d," instead of "%d" we automatically strip the delimiting commas
+        By using "%d," instead of "%d" we automatically strip the delimiting commas  
+    */
     while(fscanf(fp, "%d,", ptr+index) == 1){
         index++;
         ptr = (int*) realloc(ptr, (index+1)*sizeof(int));
