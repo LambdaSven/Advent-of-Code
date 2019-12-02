@@ -12,6 +12,9 @@ Simple enough, I pass the input through the command line and do the arithmetic r
 __Part 2__
 I felt like a recursive approach made sense here, so that's the approach I took. Again, a simple problem, but it is still only day 1 after all.
 
+__Post Completion Clean Up__
+For some reason in my original solution, I did `i /= 3` and `i -= 2` as two seperate expressions. I simplified it to `i = i/3 - 2`
+
 # Day 2
 __Part 1__
 Good practice for Malloc and pointers, though maybe I have a little bit too much shared state. Most of the problems I had to manage when writing this came from the readFile() function, once I had that working everything was smooth sailing.
