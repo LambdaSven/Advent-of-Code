@@ -58,15 +58,11 @@ int* readFile(char *argv, int *len){
     
     int* ptr = (int*) malloc(sizeof(int));
     int index = 0;
-    short terminate = 0;
 
-    while(terminate == 0){
-        if(fscanf(fp, "%d,", ptr+index) == 1){
-            index++;
-            ptr = (int*) realloc(ptr, (index+1)*sizeof(int));
-        } else {
-            terminate = 1;
-        }
+    //By using "%d," instead of "%d", we automatically strip the delimiting commas
+    while(fscanf(fp, "%d,", ptr+index) == 1){
+        index++;
+        ptr = (int*) realloc(ptr, (index+1)*sizeof(int));
     }
     fclose(fp);
     
