@@ -1,6 +1,9 @@
 # Advent of code 2019
 
-I will post my solutions to the Advent of code problems here, an include descriptions in the readme of why I took a particular approach
+I will post my solutions to the Advent of code problems here, as well as post explaination for specefic choices made
+I will try to make all solutions generally applicable, to be functional with arbitrary inputs, [mostly] regardless of length. As long as the input follows the rules of the problem given, these solutions should work.
+
+Every program will be in C using the standard library. If I need to use extra header files they will all be provided and built myself.
 
 # Day 1
 __Part 1__
