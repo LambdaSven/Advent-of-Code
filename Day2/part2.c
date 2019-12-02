@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
     //To negate the final increment the for loop does before terminating
     i--;
     j--;
-    printf("%d\nI: %d\tJ: %d\n", 100 * i + j, i, j);
+    printf("%d\n", 100 * i + j);
 }
 
 void runProgram(int* program, int len){
@@ -31,10 +31,10 @@ void runProgram(int* program, int len){
     for(ip = 0; ip < len; ip+=4){
         switch(*(program+ip)){
             case 1:
-                add(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
+                add(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
                 break;
             case 2:
-                mul(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
+                mul(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
                 break;
             case 99:
                 return;

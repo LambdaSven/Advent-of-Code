@@ -21,10 +21,10 @@ void runProgram(int* program, int len){
     for(ip = 0; ip < len; ip+=4){
         switch(*(program+ip)){
             case 1:
-                add(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
+                add(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
                 break;
             case 2:
-                mul(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
+                mul(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
                 break;
             case 99:
                 return;
