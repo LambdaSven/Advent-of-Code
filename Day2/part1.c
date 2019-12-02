@@ -16,15 +16,15 @@ int main(int argc, char *argv[]){
     printf("%d\n", *arr);
 }
 
-void runProgram(int* ip, int len){
-    int i;
-    for(i = 0; i < len; i+=4){
-        switch(*(ip+i)){
+void runProgram(int* program, int len){
+    int ip;
+    for(ip = 0; ip < len; ip+=4){
+        switch(*(program+ip)){
             case 1:
-                add(ip + *(ip+i+1), ip + *(ip+i+2), ip + *(ip+i+3));
+                add(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
                 break;
             case 2:
-                mul(ip + *(ip+i+1), ip + *(ip+i+2), ip + *(ip+i+3));
+                mul(&program[program[ip+1]], &program[program[ip+2]], &program[program[ip+3]]);
                 break;
             case 99:
                 return;
