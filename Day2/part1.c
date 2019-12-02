@@ -2,8 +2,8 @@
 #include <stdlib.h>
 int* readFile(char argv[], int *len);
 void runProgram(int* program, int len);
-void add(int* in1, int* in2, int* out);
-void mul(int* in1, int* in2, int* out);
+void add(int in1, int in2, int* out);
+void mul(int in1, int in2, int* out);
 
 
 int main(int argc, char *argv[]){
@@ -17,27 +17,30 @@ int main(int argc, char *argv[]){
 }
 
 void runProgram(int* program, int len){
-    int ip;
-    for(ip = 0; ip < len; ip+=4){
-        switch(*(program+ip)){
+    int *ip;
+    for(ip = program; ip < program+len; ip += 4){
+        switch(*(ip)){
             case 1:
-                add(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
+                add(program[*(ip+1)], program[*(ip+2)], program + *(ip + 3));
                 break;
             case 2:
-                mul(program + program[ip+1], program + program[ip+2], program + program[ip+3]);
+                mul(program[*(ip+1)], program[*(ip+2)], program + *(ip + 3));
                 break;
             case 99:
                 return;
          }
     }
 }
-
-void add(int* in1, int* in2, int* out){
-    *out = *in1 + *in2;
+/*
+    These add/mul functions aren't strictly required, but I preferred
+    modelling the program like this
+*/
+void add(int in1, int in2, int* out){
+    *out = in1 + in2;
 }
 
-void mul(int* in1, int* in2, int* out){
-    *out = *in1 * *in2;
+void mul(int in1, int in2, int* out){
+    *out = in1 * in2;
 }
 
 int* readFile(char *argv, int *len){
