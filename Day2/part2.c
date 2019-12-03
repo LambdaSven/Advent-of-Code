@@ -8,18 +8,19 @@ void mul(int in1, int in2, int* out);
 
 int main(int argc, char *argv[]){
     int len;
-    int *arr = readFile(argv[1], &len);
+    int *arr_origin = readFile(argv[1], &len);
+    int *arr = malloc(len * sizeof(int));
     int i, j;
     int req = 19690720;
+    memcpy(arr, arr_origin, len * sizeof(int));
     //O(n^2) is inefficient, for for only N=100 I figure it's fine
     for(i =0; i< 100 && *arr != req; i++){
         for(j = 0; j < 100 && *arr != req; j++){
             //ensuring the same array every time
-            arr = readFile(argv[1], &len);
+            memcpy(arr, arr_origin, len * sizeof(int));
             *(arr+1) = i;
             *(arr+2) = j;
             runProgram(arr, len);
-            free(arr);
         }
     }
     //To negate the final increment the for loop does before terminating
