@@ -32,3 +32,5 @@ __Post Completion Clean up__
 Most of the cleaning up I did post initial completion revolved around the phrase `add(ip + *(ip+i+1), ip + *(ip+i+2), ip + *(ip+i+3));` that was in the original code. I went through a few revisions deciding how to alter it, and eventually decided on making `ip` an actual pointer, and finalize the expression as `add(program[*(ip+1)], program[*(ip+2)], program + *(ip + 3))`.
 
 I also cleaned up the while loop in `readFile()`. Instead of using a sentinel I use the return value of `fscanf` itself, terminating only when it no longer is able to parse the input in the format `%d,`. 
+
+I switched to using `memcpy` so that the code looked nicer and was less prone to leaks
