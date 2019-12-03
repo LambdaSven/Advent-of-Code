@@ -1,6 +1,6 @@
 # Advent of code 2019
 
-I will post my solutions to the Advent of code problems here, as well as post explaination for specefic choices made
+I will post my solutions to the 2019 Advent of code here, as well as post explaination for specific choices made
 I will try to make all solutions generally applicable, to be functional with arbitrary inputs, [mostly] regardless of length. As long as the input follows the rules of the problem given, these solutions should work.
 
 Every program will be in C using the standard library. If I need to use extra header files they will all be provided and built myself.
@@ -21,7 +21,7 @@ For some reason in my original solution, I did `i /= 3` and `i -= 2` as two sepe
 # Day 2
 __Part 1__
 
-Good practice for Malloc and pointers, though maybe I have a little bit too much shared state. Most of the problems I had to manage when writing this came from the readFile() function, once I had that working everything was smooth sailing.
+Good practice for Malloc and pointers, though in retrospect I really didn't need dedicated functions for addition and multiplication. It felt right at the time to do it that way, more in the spirit of making an Intcode computer
 
 __Part 2__
 
