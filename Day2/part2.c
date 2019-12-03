@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
             *(arr+1) = i;
             *(arr+2) = j;
             runProgram(arr, len);
+            free(arr);
         }
     }
     //To negate the final increment the for loop does before terminating
