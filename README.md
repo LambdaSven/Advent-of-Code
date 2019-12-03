@@ -25,7 +25,7 @@ Good practice for Malloc and pointers, though in retrospect I really didn't need
 
 __Part 2__
 
-Not much had to be changed here, In retrospect I would have saved some performance by instead of reading the file every time simply copying `*arr` to `*arr_original` or something along those lines, but I think the performance benefits wouldn't be very noticable. 
+Not much had to be changed here, In retrospect I would have saved some performance by instead of reading the file every time simply copying `*arr` to `*arr_original` or something along those lines, but I think the performance benefits wouldn't be very noticable as long as I `free()` the memory before performing `readFile` again. 
 
 __Post Completion Clean up__
 
