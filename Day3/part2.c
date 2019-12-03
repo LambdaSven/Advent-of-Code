@@ -15,7 +15,6 @@ struct intersection{
 };
 
 int main(int argc, char* argv[]){
-    puts("start");
     FILE *fp = fopen(argv[1], "r");
     struct point* points = malloc(sizeof(*points));
     (*points).x = 0;
@@ -34,14 +33,12 @@ int main(int argc, char* argv[]){
     int currentSteps = 0;
     while(fscanf(fp, "%c", &ins) == 1){
         if (ins == '\n'){
-            puts("***************\n*RESET*\n***************");
             x = 0;
             y = 0;
             currentSteps = 0;
             wire++;
         }else{
             fscanf(fp, "%d,", &len);
-            printf("%c%d,", ins, len);   
             int i;
             for(i = 0; i < len; i++){
                 currentSteps++;
@@ -78,7 +75,6 @@ int main(int argc, char* argv[]){
                 if(isDupe == 0){
                     numStructs++;
                     points = realloc(points, numStructs * sizeof(*points));
-                    printf("Struct %d\t ADDING X = %d\tY = %d\n",numStructs, x, y);
                     points[numStructs-1].x = x;
                     points[numStructs-1].y = y;
                     points[numStructs-1].isInt = wire;
@@ -90,19 +86,6 @@ int main(int argc, char* argv[]){
         }
     }
     int i;
-    int distance = 999;
-    int final_dist = 999;
-    
-    for(i = 0; i < numStructs; i++){
-        if(points[i].isInt == 3){
-            distance = abs(points[i].x) + abs(points[i].y);
-            printf("INTERSECTION #: %d\tX = %d\t Y = %d\n", i, points[i].x, points[i].y);
-            printf("\tINTERSECTION DISTANCE: %d\n", distance);
-            if(final_dist > distance && distance != 0){final_dist = distance;}
-        }
-    }
-    printf("FINAL DISTANCE: %d\n", final_dist);
-    
     long steps = 99999999;
     for(i = 0; i < numInts; i++){
         int tempSteps = ints[i].stepsw1 + ints[i].stepsw2;
