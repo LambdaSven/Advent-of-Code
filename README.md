@@ -21,7 +21,7 @@ For some reason in my original solution, I did `i /= 3` and `i -= 2` as two sepe
 # Day 2
 __Part 1__
 
-Good practice for Malloc and pointers, though maybe I have a little bit too much shared state. Most of the problems I had to manage when writing this came from the readFile() function, once I had that working everything was smooth sailing.
+Good practice for Malloc and pointers, though in retrospect I really didn't need dedicated functions for addition and multiplication. It felt right at the time to do it that way, more in the spirit of making an Intcode computer
 
 __Part 2__
 
