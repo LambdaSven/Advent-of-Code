@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
     int i;
     for(i = start; i <= end; i++){
         int num[6];
-        int num_current = i;//+start;
+        int num_current = i;
         
         num[5] = num_current/100000;
         num[4] = num_current/10000 % 10; 
