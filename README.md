@@ -49,3 +49,17 @@ Once I had part 1 finished this one was really easy. Add an intersections Struct
 __Post Completion Clean up__
 
 __TODO__: Make run faster than 0(n³)
+
+# Day 4
+
+__Part 1__
+
+This was a really easy problem. Simply seperate out the digits and do some basic logic
+
+__Part 2__
+
+This solution relies on the probability of the out of bounds array values not being exactly equal to `num[j]`. I figure the probility is so low that it's not a problem.
+
+__Post Completion Clean Up__
+
+Not really much to do. Maybe change Part 2 to not rely on out of bounds (uncontrollable) inputs. But I'm sure the probability is very low of that happening
