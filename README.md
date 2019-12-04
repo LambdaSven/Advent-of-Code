@@ -54,7 +54,7 @@ __TODO__: Make run faster than 0(n³)
 
 __Part 1__
 
-This was a really easy problem. Simply seperate out the digits and do some basic logic
+This was a really easy problem. Simply seperate out the digits (with `/` and `%`) and do the some basic logic.
 
 __Part 2__
 
