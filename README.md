@@ -39,9 +39,13 @@ I switched to using `memcpy` so that the code looked nicer and was less prone to
 
 __Part 1__
 
-*guh* this one was a struggle for me. I initially tried using a 2D array, but that was not going anywhere so I switched to using Structs to store all the points. I still have a ~2 minute runtime though. I think I could improve it by using `realloc` less not searching the entire `points` array every time I add a point.
+This one was a struggle for me. I initially tried using a 2D array, but that was not going anywhere so I switched to using Structs to store all the points. I still have a ~2 minute runtime though. I think I could improve it by using `realloc` less not searching the entire `points` array every time I add a point.
 
 
 __Part 2__
 
 Once I had part 1 finished this one was really easy. Add an intersections Struct and record distances. Piece of cake. Maybe I could use that intersection struct as an idea to improve the performance of part 1 (and also this part. Same underlying code after all)
+
+__Post Completion Clean up__
+
+__TODO__: Make run faster than 0(n³)
