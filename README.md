@@ -50,6 +50,8 @@ __Post Completion Clean up__
 
 __TODO__: Make run faster than 0(n³)
 
+  More specifically, remove the check for *every* node; rather. Simply add all nodes from wire 1 without question, and then only add nodes from wire 2 to the ints struct iff they are an intersection. 
+
 # Day 4
 
 __Part 1__
