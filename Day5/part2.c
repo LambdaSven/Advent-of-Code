@@ -44,7 +44,6 @@ void runProgram(int* program, int len){
             op2 = *(program + *(ip+2));
         }
         op3 = program + *(ip+3);        
-        //printf("%d,%d,%d,%d\tIP: %d\n", *ip, op1, op2, *op3, ip-program);
         switch(opcode){
             case 1: // ADD
                 add(op1, op2, op3);
