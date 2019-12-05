@@ -23,14 +23,14 @@ void runProgram(int* program, int len){
         int opcode = (*ip)%100;
         short op1_mode = (*ip)/100 % 10;
         short op2_mode = (*ip)/1000 % 10;
-        short op3_mode = (*ip)/10000;
-        //printf("\n%d,%d,%d,%d\n\t", *ip, *(ip+1), *(ip+2), *(ip+3));
-        //printf("IP = %d: OPERAND: %d MODE: %d%d\n\t",ip-program, *ip, op1_mode, op2_mode);
-        //printf("\t OP1: %d, OP2: %d, OP3: %d\n", op1_val, op2_val, op3_val);
         int  op1_val, op2_val, op3_val;
         op1_val = *(ip+1);
         op2_val = *(ip+2);
         op3_val = *(ip+3);
+        short op3_mode = (*ip)/10000;
+        printf("\n%d,%d,%d,%d\n\t", *ip, *(ip+1), *(ip+2), *(ip+3));
+        printf("IP = %d: OPERAND: %d MODE: %d%d\n\t",ip-program, *ip, op1_mode, op2_mode);
+        printf("\t OP1: %d, OP2: %d, OP3: %d\n", op1_val, op2_val, op3_val);
         switch(opcode){
             case 1:
                 if(op1_mode == 0){
