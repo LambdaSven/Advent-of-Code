@@ -65,3 +65,13 @@ This solution relies on the probability of the out of bounds array values not be
 __Post Completion Clean Up__
 
 Not really much to do. Maybe change Part 2 to not rely on out of bounds (uncontrollable) inputs. But I'm sure the probability is very low of that happening
+
+# Day 5
+
+__Part 1__
+
+Yay! More Intcode computer! I love this problem. This did take me longer than expected though, mostly dealing with minor things involving the paramater modes.
+
+__Part 2__
+
+This was a pretty simple extension from part 1, once that was complete it was pretty simple to add more opcodes and alter the IP
