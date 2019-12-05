@@ -6,7 +6,10 @@ void add(int in1, int in2, int* out);
 void mul(int in1, int in2, int* out);
 void input(int* address);
 void output(int address);
-
+void JNZ(int* program, int** ip, int op1, int op2);
+void JZ(int* program, int** ip, int op1, int op2);
+void LT(int op1, int op2, int* out);
+void EQ(int op1, int op2, int* out);
 
 int main(int argc, char *argv[]){
     int len;
@@ -27,29 +30,28 @@ void runProgram(int* program, int len){
     
         short op1_mode = ((*ip)/100) % 10;
         short op2_mode = ((*ip)/1000) % 10;
-        int  op1_val, op2_val;
-        int* op3_val;
+        int  op1, op2;
+        int* op3;
 
         if(op1_mode == 1){
-            op1_val = *(ip+1);
+            op1 = *(ip+1);
         } else {
-            op1_val = *(program + *(ip+1));
+            op1 = *(program + *(ip+1));
         }
         if(op2_mode == 1){
-            op2_val = *(ip+2);
+            op2 = *(ip+2);
         } else {
-            op2_val = *(program + *(ip+2));
+            op2 = *(program + *(ip+2));
         }
-        
-        op3_val = program + *(ip+3);        
-     
+        op3 = program + *(ip+3);        
+        //printf("%d,%d,%d,%d\tIP: %d\n", *ip, op1, op2, *op3, ip-program);
         switch(opcode){
             case 1: // ADD
-                add(op1_val, op2_val, op3_val);
+                add(op1, op2, op3);
                 ip += 4;
                 break;
             case 2: // MUL
-                mul(op1_val, op2_val, op3_val);
+                mul(op1, op2, op3);
                 ip += 4;
                 break;
             case 3: // IN
@@ -57,13 +59,58 @@ void runProgram(int* program, int len){
                 ip += 2;
                 break;
             case 4: //OUT
-                output(op1_val);
+                output(op1);
                 ip += 2;
                 break;
-        }
+            case 5: //JNZ
+                JNZ(program, &ip, op1, op2);
+                break;
+            case 6: //JZ
+                JZ(program, &ip, op1, op2);
+                break;
+            case 7: //LT
+                LT(op1, op2, op3);
+                ip += 4;
+                break;
+            case 8://EQ
+                EQ(op1, op2, op3);
+                ip += 4;
+                break;
+        }   
     }
 }
 
+void JNZ(int* program, int** ip, int op1, int op2){
+    if(op1 != 0){
+        *ip = program+op2;
+    } else {
+        *ip += 3;
+    }
+}
+
+void JZ(int* program, int** ip, int op1, int op2){
+    if(op1 == 0){
+        *ip = program+op2;
+    } else {
+        *ip += 3;
+    }
+}
+
+void LT(int op1, int op2, int* op3){
+    if(op1 < op2){
+        *op3 = 1;
+    } else {
+        *op3 = 0;
+    }
+}
+
+void EQ(int op1, int op2, int* op3){
+    if(op1 == op2){
+        *op3 = 1;
+    } else {
+        *op3 = 0;
+    }
+}
 void output(int address){
     printf("%d", address);
 }
