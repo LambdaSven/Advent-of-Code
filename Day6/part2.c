@@ -55,7 +55,9 @@ int main(int argc, char* argv[]){
             }
         }
     }
-   
+    
+      
+ 
     numJumps = -1;
     currentPlanet = map+end;
     toFind = (*currentPlanet).parent;
@@ -66,13 +68,13 @@ int main(int argc, char* argv[]){
                 currentPlanet = map+i;
                 toFind = (*currentPlanet).parent;
                 (*currentPlanet).distSAN = numJumps;
+                break;
             }
         }
     }
 
     for(i = 0; i < index; i++){
         int temp = map[i].distSAN + map[i].distYOU;
-        printf("%d\t%d\n", map[i].distSAN, map[i].distYOU);
         if(temp < numOrbits){
             numOrbits = temp;
         }
@@ -80,8 +82,5 @@ int main(int argc, char* argv[]){
     
     fclose(fp);
     printf("%d\n", numOrbits);
-    puts("end");   
-    
-
 }
 
