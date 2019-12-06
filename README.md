@@ -75,3 +75,13 @@ Yay! More Intcode computer! I love this problem. This did take me longer than ex
 __Part 2__
 
 This was a pretty simple extension from part 1, once that was complete it was pretty simple to add more opcodes and alter the IP
+
+# Day 6
+
+__Part 1__
+
+This was a pretty simple problem that just took a while to type. Essentially I create a tree of `struct planet`, where each planet holds it's own id and it's parents. I then go through every planet, working up the tree until I hit `COM`, adding up all the steps along the way.
+
+__Part 2__
+
+During the reading of the file and the creation of `struct planet* map` I store the index of `YOU` and `SAN` respectively. Then I work up from `YOU` and `SAN` until I hit `COM`, adding the distance traversed to each planet along the way in a new part of the struct. Then I go through every planet, finding adding up `planet.distSAN + planet.distYOU`. The smallest one is the correct answer.
