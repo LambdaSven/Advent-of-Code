@@ -48,7 +48,7 @@ Once I had part 1 finished this one was really easy. Add an intersections Struct
 
 __Post Completion Clean up__
 
-__TODO__: Make run faster than 0(n³)
+__TODO__: Make run faster, it is *abysmally* slow right now
 
   More specifically, remove the check for *every* node; rather. Simply add all nodes from wire 1 without question, and then only add nodes from wire 2 to the ints struct iff they are an intersection. 
 
