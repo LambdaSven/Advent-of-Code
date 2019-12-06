@@ -51,5 +51,6 @@ int main(int argc, char* argv[]){
 
     fclose(fp);
     printf("%d\n", numOrbits);
+
 }
 
