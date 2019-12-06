@@ -62,10 +62,6 @@ __Part 2__
 
 This solution relies on the probability of the out of bounds array values not being exactly equal to `num[j]`. I figure the probility is so low that it's not a problem.
 
-__Post Completion Clean Up__
-
-Not really much to do. Maybe change Part 2 to not rely on out of bounds (uncontrollable) inputs. But I'm sure the probability is very low of that happening
-
 # Day 5
 
 __Part 1__
