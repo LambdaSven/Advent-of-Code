@@ -16,7 +16,6 @@ int main(int argc, char* argv[]){
     char parent[4];
     char child[4];
     while(fscanf(fp, ("%3s)%3s"), parent, child) == 2){
-        printf("READ: %3s)%3s\n", parent, child);
         if(index >= size_alloc){
             size_alloc *= 2;
             map = realloc(map, size_alloc*sizeof(*map));
@@ -27,7 +26,6 @@ int main(int argc, char* argv[]){
         memcpy(map[index].parent, parent, 4*sizeof(char));      
         index++; 
     }
-    printf("%d INDEX\n", index);
     int i;
     int numOrbits = 0;
     int searched = 0;
@@ -37,11 +35,9 @@ int main(int argc, char* argv[]){
         char* toFind = (*currentPlanet).parent;
 
         while(strcmp(toFind, "COM") != 0){
-            printf("SEARCHING FOR %s\n", toFind);
             for(i = 0; i < index; i++){
                // printf("\t%s == %s ?\n", map[i].id, toFind);
                 if(strcmp(toFind, map[i].id) == 0){
-                    printf("\tFOUND\n");
                     currentPlanet = map+i;
                     toFind = (*currentPlanet).parent;
                     numOrbits++;
@@ -50,14 +46,10 @@ int main(int argc, char* argv[]){
             }
         }
         numOrbits++;
-        printf("REACHED COM");
         searched++;
     }
 
     fclose(fp);
     printf("%d\n", numOrbits);
-    puts("end");   
-    
-
 }
 
