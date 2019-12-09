@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 int* readFile(char argv[], int *len);
-void runProgram(int* program, int len);
+void runProgram(int* program, int len, int input1, int* input2);
 void add(int in1, int in2, int* out);
 void mul(int in1, int in2, int* out);
-void input(int* address);
-void output(int address);
+void input(int* address, int input);
+void output(int address, int* output);
 void JNZ(int* program, int** ip, int op1, int op2);
 void JZ(int* program, int** ip, int op1, int op2);
 void LT(int op1, int op2, int* out);
@@ -17,26 +17,27 @@ int main(int argc, char *argv[]){
     int *arr = readFile(argv[1], &len);
     int i;
     int *arr_orig = memcpy(arr_orig, arr, len*sizeof(int));
-
-    
-    runProgram(arr, len);
+    int output = 0;
+    for(i = 0; i <= 4; i++){
+        memcpy(arr, arr_orig, len*sizeof(int));
+        runProgram(arr, len, i, &output);
+    }
 }
 
-void runProgram(int* program, int len){
+void runProgram(int* program, int len, int input1, int* input2){
     int *ip;
     int i;
-    
-    for(ip = program; ip < program+len;){
+    int numInputs = 2; 
+    for(ip = program;;){
         int opcode = (*ip)%100;
         if(opcode == 99){
             return;
         }    
-    
         short op1_mode = ((*ip)/100) % 10;
         short op2_mode = ((*ip)/1000) % 10;
         int  op1, op2;
-        int* op3;
-
+        int op3;
+        int j;
         if(op1_mode == 1){
             op1 = *(ip+1);
         } else {
@@ -47,22 +48,26 @@ void runProgram(int* program, int len){
         } else {
             op2 = *(program + *(ip+2));
         }
-        op3 = program + *(ip+3);        
+        op3 = *(ip+3);        
         switch(opcode){
             case 1: // ADD
-                add(op1, op2, op3);
+                add(op1, op2, program + op3);
                 ip += 4;
                 break;
             case 2: // MUL
-                mul(op1, op2, op3);
+                mul(op1, op2, program + op3);
                 ip += 4;
                 break;
             case 3: // IN
-                input(program+ *(ip+1));
+                if(--numInputs == 1){
+                    input(program + *(ip+1), input1);            
+                } else {
+                    input(program + *(ip+1), *input2);
+                }
                 ip += 2;
                 break;
             case 4: //OUT
-                output(op1);
+                output(op1, input2);
                 ip += 2;
                 break;
             case 5: //JNZ
@@ -72,11 +77,11 @@ void runProgram(int* program, int len){
                 JZ(program, &ip, op1, op2);
                 break;
             case 7: //LT
-                LT(op1, op2, op3);
+                LT(op1, op2, program + op3);
                 ip += 4;
                 break;
             case 8://EQ
-                EQ(op1, op2, op3);
+                EQ(op1, op2, program + op3);
                 ip += 4;
                 break;
         }   
@@ -89,6 +94,7 @@ void JNZ(int* program, int** ip, int op1, int op2){
     } else {
         *ip += 3;
     }
+    return;
 }
 
 void JZ(int* program, int** ip, int op1, int op2){
@@ -97,6 +103,7 @@ void JZ(int* program, int** ip, int op1, int op2){
     } else {
         *ip += 3;
     }
+    return;
 }
 
 void LT(int op1, int op2, int* op3){
@@ -105,6 +112,7 @@ void LT(int op1, int op2, int* op3){
     } else {
         *op3 = 0;
     }
+    return;
 }
 
 void EQ(int op1, int op2, int* op3){
@@ -113,22 +121,27 @@ void EQ(int op1, int op2, int* op3){
     } else {
         *op3 = 0;
     }
+    return;
 }
-void output(int address){
-    printf("%d", address);
+void output(int address, int* output){
+    printf("%d\n", address);
+    *output = address;
+    return;
 }
 
-void input(int* address){
-    printf("Please enter your value: ");
-    sscanf("%d", address);
+void input(int* address, int input){
+    *address = input;
+    return;
 }
 
 void add(int in1, int in2, int* out){
     *out = in1 + in2;
+    return;
 }
 
 void mul(int in1, int in2, int* out){
     *out = in1 * in2;
+    return;
 }
 
 int* readFile(char *argv, int *len){
