@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 int* readFile(char argv[], int *len);
-void runProgram(int* program, int len, int input1, int* input2);
+int  runProgram(int* program, int len, int input1, int input2);
 void add(int in1, int in2, int* out);
 void mul(int in1, int in2, int* out);
 void input(int* address, int input);
-void output(int address, int* output);
+void read(int address, int* output);
 void JNZ(int* program, int** ip, int op1, int op2);
 void JZ(int* program, int** ip, int op1, int op2);
 void LT(int op1, int op2, int* out);
@@ -15,23 +15,52 @@ void EQ(int op1, int op2, int* out);
 int main(int argc, char *argv[]){
     int len;
     int *arr = readFile(argv[1], &len);
-    int i;
-    int *arr_orig = memcpy(arr_orig, arr, len*sizeof(int));
+    int i,j,k,l,m;
+    int index;
+    int *arr_orig = malloc(len*sizeof(int));
+    arr_orig = memcpy(arr_orig, arr, len*sizeof(int));
     int output = 0;
-    for(i = 0; i <= 4; i++){
-        memcpy(arr, arr_orig, len*sizeof(int));
-        runProgram(arr, len, i, &output);
+    int *input =malloc(5*sizeof(int));
+    int result = 0;
+    for(i = 0; i < 5; i++){
+        for(j = 0; j < 5; j++){
+            for(k = 0; k < 5; k++){
+                for(l = 0; l < 5; l++){
+                    for(m = 0; m < 5; m++){
+                        if(i != j && i != k && i != l && i != m 
+                        && j != k && j != l && j != m
+                        && k != l && k != m 
+                        && l != m){
+                            output = 0;
+                            input[0] = i;
+                            input[1] = j;
+                            input[2] = k;
+                            input[3] = l;
+                            input[4] = m;
+                            for(index = 0; index < 5; index++){
+                                memcpy(arr, arr_orig, len*sizeof(int));
+                                output = runProgram(arr, len, input[index], output);
+                                if(output > result){result = output;}
+                                printf("Input: %d%d%d%d%d, Output: %d\n", i, j, k, l, m, output);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+    printf("%d\n", result);
 }
 
-void runProgram(int* program, int len, int input1, int* input2){
+int runProgram(int* program, int len, int input1, int input2){
     int *ip;
+    int output;
     int i;
     int numInputs = 2; 
     for(ip = program;;){
         int opcode = (*ip)%100;
         if(opcode == 99){
-            return;
+            return output;
         }    
         short op1_mode = ((*ip)/100) % 10;
         short op2_mode = ((*ip)/1000) % 10;
@@ -62,12 +91,12 @@ void runProgram(int* program, int len, int input1, int* input2){
                 if(--numInputs == 1){
                     input(program + *(ip+1), input1);            
                 } else {
-                    input(program + *(ip+1), *input2);
+                    input(program + *(ip+1), input2);
                 }
                 ip += 2;
                 break;
             case 4: //OUT
-                output(op1, input2);
+                read(op1, &output);
                 ip += 2;
                 break;
             case 5: //JNZ
@@ -86,6 +115,7 @@ void runProgram(int* program, int len, int input1, int* input2){
                 break;
         }   
     }
+    return -1;
 }
 
 void JNZ(int* program, int** ip, int op1, int op2){
@@ -123,8 +153,7 @@ void EQ(int op1, int op2, int* op3){
     }
     return;
 }
-void output(int address, int* output){
-    printf("%d\n", address);
+void read(int address, int* output){
     *output = address;
     return;
 }
