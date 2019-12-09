@@ -81,3 +81,33 @@ This was a pretty simple problem that just took a while to type. Essentially I c
 __Part 2__
 
 During the reading of the file and the creation of `struct planet* map` I store the index of `YOU` and `SAN` respectively. Then I work up from `YOU` and `SAN` until I hit `COM`, adding the distance traversed to each planet along the way in a new part of the struct. Then I go through every planet, finding adding up `planet.distSAN + planet.distYOU`. The smallest one is the correct answer.
+
+# Day 7
+
+__Part 1__
+
+This one wasn't too hard to figure out. The 5 for loops look ugly, but they're pretty efficient. Adding a return value to the intcode machine made a lot of sense for this problem.
+
+__Part 2__
+
+This one was only hard to wrap my head around how to implement. Once I figured out how I wanted to do it (storing 5 seperate ip's to essentially be able to recall the exact state) it was mostly just making sure the pointers were being handled properly.
+
+# Day 8
+
+__Part 1__
+
+This was a nice break, as it was really easy. I simply count, and reset the counter every `LENGTH * WIDTH` elements, keeping track of the numbers if they are the new candidates.
+
+__Part 2__
+
+Initially I thought I was going to have to do crazy 3D array stuff here, but then I realized, since Layer 1 is the first in the text file and also had display priority. Once that connection was made, it was a very simple program.
+
+# Day 9
+
+__Part 1__
+
+Intcode keeps coming back and I love it. I had to switch from `int` to `long long int` because of the new demands, and it was tedious just making that change, but other than that it was a simple program. I was already well set up to add new addressing modes, so it was very simple to make base addressing work.
+
+__Part 2__
+
+There wasn't a problem here, it simply verified that my intcode machine worked fully
