@@ -38,24 +38,51 @@ int main(int argc, char *argv[]){
     int *ip4 = arr4;
     int *ip5 = arr5;
     
-    output = 0;
-    while(*ip5 != 99){
-        printf("%d\t%d\n", output, *ip5);
-        output = runProgram(arr1, &ip1, len, 9, output);
-        output = runProgram(arr2, &ip2, len, 8, output);
-        output = runProgram(arr3, &ip3, len, 7, output);
-        output = runProgram(arr4, &ip4, len, 6, output);
-        output = runProgram(arr5, &ip5, len, 5, output);
-        printf("%x\t%x\t%x\t%x\t%x\n", *ip1, *ip2, *ip3, *ip4, *ip5);
-     }
+    
+    for(i = 5; i < 10; i++){
+        for(j = 5; j < 10; j++){
+            for(k = 5; k < 10; k++){
+                for(l = 5; l < 10; l++){
+                    for(m = 5; m < 10; m++){
+                        if(i != j && i != k && i != l && i != m
+                        && j != k && j != l && j != m
+                        && k != l && k != m
+                        && l != m){
+                            while(*ip5 != 99){
+                                output = runProgram(arr1, &ip1, len, i, output);
+                                output = runProgram(arr2, &ip2, len, j, output);
+                                output = runProgram(arr3, &ip3, len, k, output);
+                                output = runProgram(arr4, &ip4, len, l, output);
+                                output = runProgram(arr5, &ip5, len, m, output);
+                            }
+                            if(output > result){result = output;}
+                            
+                            output = 0; 
+                            memcpy(arr1, arr, len*sizeof(int));
+                            memcpy(arr2, arr, len*sizeof(int));
+                            memcpy(arr3, arr, len*sizeof(int));
+                            memcpy(arr4, arr, len*sizeof(int));
+                            memcpy(arr5, arr, len*sizeof(int));
+    
+                            ip1 = arr1;
+                            ip2 = arr2;
+                            ip3 = arr3;
+                            ip4 = arr4;
+                            ip5 = arr5;
 
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     printf("%d\n", result);
 }
 
 int runProgram(int* program, int **ip_in, int len, int input1, int input2){
     int *ip = *ip_in;
-    int output;
+    int output = input2;
     int i;
     int numInputs = 2; 
     for(;;){
@@ -90,7 +117,7 @@ int runProgram(int* program, int **ip_in, int len, int input1, int input2){
                 ip += 4;
                 break;
             case 3: // IN
-                if(--numInputs == 1){
+                if(ip == program){
                     input(program + *(ip+1), input1);            
                 } else {
                     input(program + *(ip+1), input2);
@@ -101,7 +128,6 @@ int runProgram(int* program, int **ip_in, int len, int input1, int input2){
                 read(op1, &output);
                 ip += 2;
                 *ip_in = ip;
-                printf("\tOutput: %d nextIns: %d\n", output, *(ip));
                 return output;
                 break;
             case 5: //JNZ
