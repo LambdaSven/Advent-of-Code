@@ -44,11 +44,12 @@ int main(int argc, char* argv[]){
             numPoints++;
         } else if(current == '\n'){index--;}
     }
+    int stationX;
+    int stationY;
     int result = 0;
     for(index = 0; index < numPoints; index++){
         struct point* currentPoint = points+index;
         int i, j;
- 
         for(i = 0; i < numPoints; i++){
             struct point* currentDest = points+i;
             if((*currentDest).x == (*currentPoint).x && (*currentDest).y == (*currentPoint).y){
@@ -101,13 +102,14 @@ int main(int argc, char* argv[]){
                     currentPoint->lines[currentPoint->numLines].endX = currentDest->x;
                     currentPoint->lines[currentPoint->numLines].endY = currentDest->y;
                     currentPoint->numLines++;
-                } else {
-                }
+                }                
             }
         }
         if(result < currentPoint->numLines){
             result = currentPoint->numLines;
+            stationX = currentPoint->x;
+            stationY = currentPoint->y;
         }
     }
-    printf("%d", result);
+    printf("Station at (%d , %d) has %d asteroids\n", stationX, stationY, result);
 }
