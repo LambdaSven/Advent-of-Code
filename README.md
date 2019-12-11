@@ -121,3 +121,14 @@ Today was rough, but it might just be that geometry is a weakness of mine. The f
 __Part 2__
 
 I'm really bad at triginometry, and this one took me ages. The biggest catch though was that I neglected to think about how the Y value as stored in an array is backwards from how it works on a graph (That is, increases in Y lower the value on the 2d Array). Once I got that fixed it worked fine.
+
+# Day 11
+
+__Part 1__
+
+Felt like day 7 but easier. I simply suspend the program when I need to, handle the output, and then continue.
+
+__Part 2__
+
+I spent a very long time debugging only to realize that I was resetting the base address every time I resumed the computer. Once that was fixed it was smooth sailing.
+
