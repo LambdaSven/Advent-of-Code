@@ -111,3 +111,13 @@ Intcode keeps coming back and I love it. I had to switch from `int` to `long lon
 __Part 2__
 
 There wasn't a problem here, it simply verified that my intcode machine worked fully
+
+# Day 10
+
+__Part 1__
+
+Today was rough, but it might just be that geometry is a weakness of mine. The first part wasn't too bad, I just needed to remember to allow 2 instances of the same slope if they are on opposite sides of the origin point.
+
+__Part 2__
+
+I'm really bad at triginometry, and this one took me ages. The biggest catch though was that I neglected to think about how the Y value as stored in an array is backwards from how it works on a graph (That is, increases in Y lower the value on the 2d Array). Once I got that fixed it worked fine.
