@@ -12,7 +12,7 @@ void LT(long long op1, long long op2, long long * out);
 void EQ(long long op1, long long op2, long long* out);
 
 
-enum dir{up, right, down, left};
+enum gameObject{empty, wall, block, h_paddle, ball};
 int main(int argc, char *argv[]){
     int len;
     long long *arr = readFile(argv[1], &len);
@@ -27,6 +27,30 @@ int main(int argc, char *argv[]){
 
     long long *ip_in = arr;
     int base = 0;
+    const int size = 500;
+    int screen[size][size];
+    for(i = 0; i < size; i++){
+        for(j = 0; j < size; j++){
+            screen[i][j] = empty;
+        }
+    }
+
+    for(;;){
+        int outputX = runProgram(arr, &ip_in, len, 0, &base);
+        if(outputX == -1){break;}
+        int outputY = runProgram(arr, &ip_in, len, 0, &base);
+        if(outputY == -1){break;}
+        screen[outputX][outputY] = runProgram(arr, &ip_in, len, 0, &base);
+    }
+    int count = 0;
+    for(i = 0; i < size; i++){
+        for(j = 0; j < size; j++){
+            if(screen[i][j] == block){
+                count++;
+            }
+        }
+    }
+    printf("%d", count);
 
 }
 
