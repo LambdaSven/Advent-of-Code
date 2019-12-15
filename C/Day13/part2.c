@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
     long long *arr = readFile(argv[1], &len);
     
     //alloc a large section of extra memory
-    arr = realloc(arr, len*len*len*sizeof(*arr));
+    arr = realloc(arr, len*len*sizeof(*arr));
     int i, j;
     for(i = len; i < len*len; i++){
         arr[i] = 0;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
     *arr = 2;
     long long *ip_in = arr;
     int base = 0;
-    const int size = 70;
+    const int size = 100;
     int input = 0;
     int screen[size][size];
     for(i = 0; i < size; i++){
@@ -63,6 +63,7 @@ int main(int argc, char *argv[]){
             input = 0;
         }
     }
+    puts("\n");
 }
 
 int runProgram(long long* program, long long **ip_in,  int len, int input, int* base_in){
