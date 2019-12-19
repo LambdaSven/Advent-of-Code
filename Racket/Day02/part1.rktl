@@ -1,5 +1,8 @@
 #lang racket
-
+;NOTE: input has been altered to replace ',' with ' '
+;by using 'sed -i 's/,/\ /g' input.txt'
+;if using this on your own input
+;replace ',' with ' ' before running.
 (define input(file->list "input.txt"))
 
 (define (computer program ip)
