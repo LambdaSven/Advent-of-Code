@@ -95,18 +95,19 @@ int main(int argc, char* argv[]){
         //cycle through all inputs
         for(j = 0; j < allReactions[i].numElements; j++){
             for(k = 0; temp <= allReactions[i].input[j].numOre * allReactions[i].inAmounts[j];k++){
-                temp = k * allReactions[i].input[j].minProduced + extra;
+                temp = (k * allReactions[i].input[j].minProduced) + extra;
             }
             //If the extra was nessecary
-            if(temp-extra < allReactions[i].input[j].numOre*allReactions[i].inAmounts[j]){
+            if(temp-extra <= allReactions[i].input[j].numOre*allReactions[i].inAmounts[j]){
                 //should subtract the extra used from extra
-                extra += temp - extra - allReactions[i].input[j].numOre*allReactions[i].inAmounts[j];
+                extra -= temp - allReactions[i].input[j].numOre*allReactions[i].inAmounts[j];
                 printf("LOST EXTRA\t");
             //didn't use any extra
             } else {
                 extra += temp - allReactions[i].input[j].numOre*allReactions[i].inAmounts[j];
                 printf("GAINED EXTRA\t");
             }
+            
             temp = allReactions[i].input[j].numOre*allReactions[i].inAmounts[j];
             numOres += temp/allReactions[i].outAmount;
             printf("EXTRA: %d\n", extra);
