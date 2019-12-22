@@ -133,8 +133,3 @@ int main(int argc, char* argv[]){
 }    
     printf("FUEL: %d\tEXTRA: %d SUMEXTRA: %d\n", fuelAmount, extra, sumExtra);
 }
-
-
-
-
-
