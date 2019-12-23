@@ -13,14 +13,14 @@
 
   (define (mul program ip)
     (list-set program (list-ref program (+ ip 3)) 
-      (* (list-ref program (list-ref program(+ ip 1)))
+      (* (list-ref program (list-ref program (+ ip 1)))
          (list-ref program (list-ref program (+ ip 2))))))
 
   (define (run program ip) 
     (cond ;check opcode at (list-ref program ip)
-          ((= (list-ref program ip) 1) (run (add program ip) (+ ip 4)))
-          ((= (list-ref program ip) 2) (run (mul program ip) (+ ip 4)))
-          ((= (list-ref program ip) 99) program)))
+      ((= (list-ref program ip) 1) (run (add program ip) (+ ip 4)))
+      ((= (list-ref program ip) 2) (run (mul program ip) (+ ip 4)))
+      ((= (list-ref program ip) 99) program)))
 
   (run program ip))
 
