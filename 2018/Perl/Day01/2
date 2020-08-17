@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+use v5.12;
+
+open INPUT, 'input.txt';
+my $sum;
+my %reached;
+my $flag;
+while(!$flag){
+    chomp($_ = <INPUT>);
+    if($_ == undef){ # If we are at end of file
+        seek(INPUT,0,0); #go back to beginning of file
+        chomp($_ = <INPUT>);
+    }
+    $sum += $_;
+    $reached{$sum}++;
+    if($reached{$sum} > 1){
+        $flag++;
+    }
+}
+say $sum;

@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+use v5.12;
+
+open INPUT, 'input.txt';
+my $sum;
+while(<INPUT>){
+    $sum += $_;
+}
+say $sum;
