@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+use v5.12;
+
+open INPUT, 'input.txt';
+chomp(my @input = <INPUT>);
+
+sub compare{
+    my @target = split // ,$_[0];
+    my @comp = split // ,$_[1];
+    my $comp;
+    for(0..@target){
+        if($target[$_] eq $comp[$_]){
+            $comp++;
+        }
+    }
+    @target - $comp + 1
+}
+
+sub getDiff{
+    my @target = split // ,$_[0];
+    my @comp = split // ,$_[1];
+    my $remove;
+    for(0..@target){
+        if($target[$_] ne $comp[$_]){
+            $remove = $target[$_];
+        }
+    }
+    $_[0] =~ s/$remove//r
+}
+
+foreach my $target (@input){
+    foreach(@input){
+        if($_ ne $target){
+            if(compare($target, $_) == 1){
+                say getDiff($target, $_);
+                exit;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+use v5.10;
+
+open INPUT, 'input.txt';
+my $twice;
+my $thrice;
+while(<INPUT>){
+    chomp;
+    my $f3 = 0;
+    my $f2 = 0;
+    my @id = sort(split // , $_);
+    my %nums;
+
+    #create my mapping of numbers
+    foreach(@id){
+        $nums{$_}++;
+    }
+
+    foreach(values %nums){
+        print $_;
+        if($f3 == 0 and $_ == 3){
+            $thrice++;
+            $f3++;
+        }
+        if($f2 == 0 and $_ == 2){
+            $twice++;
+            $f2++;
+        }
+    }
+    say "";
+}
+say $twice * $thrice;
