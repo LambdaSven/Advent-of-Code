@@ -28,7 +28,7 @@ void runProgram(int* program, int len){
                 break;
             case 99:
                 return;
-         }
+        }
     }
 }
 /*
