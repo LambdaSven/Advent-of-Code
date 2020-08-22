@@ -12,10 +12,10 @@ public class D2P2 {
         ArrayList<Integer> tape = parseInput(new File(args[0]));
         for(int i = 0; i < 100; i++){
             for(int j = 0; j < 100; j++){
-                tape.set(1, i);
-                tape.set(2, j);
-                @SuppressWarnings("unchecked") // This type cast is safe - tape will only ever by ArrayList<Integer>
-                Intcode computer = new Intcode((ArrayList<Integer>) tape.clone(), 0);
+                ArrayList<Integer> clone = clone(tape);
+                clone.set(1, i);
+                clone.set(2, j);
+                Intcode computer = new Intcode(clone, 0);
                 computer.run();
                 if(computer.getMemory(0) == 19690720){
                     System.out.printf("%d\n", 100 * i + j);
@@ -26,7 +26,15 @@ public class D2P2 {
         System.out.printf("Could not solve");
     }
 
-    public static ArrayList<Integer> parseInput(File file){
+    private static ArrayList<Integer> clone(ArrayList<Integer> tape) {
+        ArrayList<Integer> clone = new ArrayList<Integer>();
+        for(Integer i : tape){
+            clone.add(i);
+        }
+        return clone;
+    }
+
+    public static ArrayList<Integer> parseInput(File file) {
         try {
             Scanner in = new Scanner(file);
             String[] temp = in.nextLine().split(",");
