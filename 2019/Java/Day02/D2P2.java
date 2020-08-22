@@ -14,11 +14,11 @@ public class D2P2 {
             for(int j = 0; j < 100; j++){
                 tape.set(1, i);
                 tape.set(2, j);
-                
-                Intcode computer = new Intcode((ArrayList) tape.clone(), 0);
+                @SuppressWarnings("unchecked") // This type cast is safe - tape will only ever by ArrayList<Integer>
+                Intcode computer = new Intcode((ArrayList<Integer>) tape.clone(), 0);
                 computer.run();
                 if(computer.getMemory(0) == 19690720){
-                    System.out.printf("%d", 100 * i + j);
+                    System.out.printf("%d\n", 100 * i + j);
                     System.exit(0);
                 }
             }
@@ -30,7 +30,7 @@ public class D2P2 {
         try {
             Scanner in = new Scanner(file);
             String[] temp = in.nextLine().split(",");
-            ArrayList<Integer> al = new ArrayList<>(200000);
+            ArrayList<Integer> al = new ArrayList<>(200000); // Allocate large memory
             in.close();
 
             for(String s : temp){

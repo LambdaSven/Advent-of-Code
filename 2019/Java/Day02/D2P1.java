@@ -21,7 +21,7 @@ public class D2P1 {
         try {
             Scanner in = new Scanner(file);
             String[] temp = in.nextLine().split(",");
-            ArrayList<Integer> al = new ArrayList<>(200000);
+            ArrayList<Integer> al = new ArrayList<>(200000); // Allocate large amount of memory to computer
             in.close();
 
             for(String s : temp){
