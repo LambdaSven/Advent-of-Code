@@ -5,13 +5,13 @@ public class Intcode {
     private ArrayList<Integer> tape;
     private int pc;
 
-    //Direct load
-    private int ld(int i){
+    //Immediate Load
+    private int imm(int i){
         return tape.get(i);
     }
 
-    //Indirect Load
-    private int ild(int i){
+    //Direct Load
+    private int dir(int i){
         return tape.get(tape.get(i));
     }
 
@@ -29,12 +29,12 @@ public class Intcode {
     }
 
     private void add(int o){
-        tape.set(ld(o+3), ild(o+2) + ild(o+1));
+        tape.set(imm(o+3), dir(o+2) + dir(o+1));
         pc += 4;
     }
 
     private void mul(int o){
-        tape.set(ld(o+3), ild(o+2) * ild(o+1));
+        tape.set(imm(o+3), dir(o+2) * dir(o+1));
         pc += 4;
     }
 
