@@ -19,22 +19,22 @@ public class Intcode {
         while(tape.get(pc) != 99 && pc < tape.size()){
             switch(tape.get(pc)){
                 case 1:
-                    add(pc);
+                    add();
                     break;
                 case 2:
-                    mul(pc);
+                    mul();
                     break;
             }
         }
     }
 
-    private void add(int o){
-        tape.set(imm(o+3), dir(o+2) + dir(o+1));
+    private void add(){
+        tape.set(imm(pc+3), dir(pc+2) + dir(pc+1));
         pc += 4;
     }
 
-    private void mul(int o){
-        tape.set(imm(o+3), dir(o+2) * dir(o+1));
+    private void mul(){
+        tape.set(imm(pc+3), dir(pc+2) * dir(pc+1));
         pc += 4;
     }
 
