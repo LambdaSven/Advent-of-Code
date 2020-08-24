@@ -17,26 +17,41 @@ public class D7P1 {
                 int[] digits = splitDigits(i);
                 Integer[] in = {digits[0], 0};
                 Intcode computer1 = new Intcode(tape, in);
+                computer1.setPipeMode(true);
+                computer1.setInBuf(true);
+                computer1.setOutBuf(true);
                 computer1.run();
 
                 in[0] = digits[1];
                 in[1] = computer1.getOutput();
                 Intcode computer2 = new Intcode(tape, in);
+                computer2.setPipeMode(true);
+                computer2.setInBuf(true);
+                computer2.setOutBuf(true);
                 computer2.run();
 
                 in[0] = digits[2];
                 in[1] = computer2.getOutput();
                 Intcode computer3 = new Intcode(tape, in);
+                computer3.setPipeMode(true);
+                computer3.setInBuf(true);
+                computer3.setOutBuf(true);
                 computer3.run();
 
                 in[0] = digits[3];
                 in[1] = computer3.getOutput();
                 Intcode computer4 = new Intcode(tape, in);
+                computer4.setPipeMode(true);
+                computer4.setInBuf(true);
+                computer4.setOutBuf(true);
                 computer4.run();
 
                 in[0] = digits[4];
                 in[1] = computer4.getOutput();
                 Intcode computer5 = new Intcode(tape, in);
+                computer5.setPipeMode(true);
+                computer5.setInBuf(true);
+                computer5.setOutBuf(true);
                 computer5.run();
 
                 int out = computer5.getOutput();

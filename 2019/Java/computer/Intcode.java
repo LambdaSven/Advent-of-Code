@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Intcode {
     private ArrayList<Integer> tape;
     private Queue<Integer> inBuf, outBuf;
     private int pc;
-    private boolean isHalted;
+    private boolean isHalted, pipeMode, outBufMode, inBufMode;
+    private Scanner sc;
 
     public void run(){
         if(isHalted){return;}
@@ -26,7 +28,11 @@ public class Intcode {
                     break;
                 case 4:
                     out(getModes(pc));
-                    return;
+                    if(pipeMode){
+                        return;
+                    } else {
+                        break;
+                    }
                 case 5:
                     jt(getModes(pc));
                     break;
@@ -92,15 +98,25 @@ public class Intcode {
     private void out(int[] modes){
         int x;
         x = load(pc + 1, modes[0]);
-        outBuf.add(x);
+        if(outBufMode){
+            outBuf.add(x);
+        } else {
+            System.out.printf("%d\n", x);
+        }
         pc += 2;
     }
 
     private void in(){
-        while(inBuf.isEmpty()){
-            //do nothing 
+        int s;
+        if(inBufMode){
+            while(inBuf.isEmpty()){
+                //do nothing 
+            }
+            s = inBuf.remove();
+        } else {
+            System.out.printf("Awaiting Input: ");
+            s =sc.nextInt();
         }
-        int s = inBuf.remove();
         int d = imm(pc + 1);
         store(d, s);
         pc += 2;
@@ -146,28 +162,34 @@ public class Intcode {
         tape.set(d, s);
     }
 
-    public Intcode(ArrayList<Integer> in, int start){
+    public Intcode(ArrayList<Integer> in){
         tape = clone(in);
+        isHalted = false;
+        pipeMode = false;
+        outBufMode = false;
+        inBufMode = false;
+        sc = new Scanner(System.in);
+    }
+
+    public Intcode(ArrayList<Integer> in, int start){
+        this(in);
         pc = start;
         inBuf = new LinkedList<Integer>();
         outBuf = new LinkedList<Integer>();
-        isHalted = false;
     }
 
     public Intcode(ArrayList<Integer> in, int start, Integer[] inputs){
-        tape = clone(in);
+        this(in);
         pc = start;
         inBuf = new LinkedList<Integer>(Arrays.asList(inputs));
         outBuf = new LinkedList<Integer>();
-        isHalted = false;
     }
 
     public Intcode(ArrayList<Integer> in, Integer[] inputs){
-        tape = clone(in);
+        this(in);
         pc = 0;
         inBuf = new LinkedList<Integer>(Arrays.asList(inputs));
         outBuf = new LinkedList<Integer>();
-        isHalted = false;
     }
 
     private static ArrayList<Integer> clone(ArrayList<Integer> src){
@@ -192,5 +214,17 @@ public class Intcode {
 
     public void input(Integer i){
         inBuf.add(i);
+    }
+
+    public void setPipeMode(boolean b){
+        pipeMode = b;
+    }
+
+    public void setOutBuf(boolean b){
+        outBufMode = b;
+    }
+
+    public void setInBuf(boolean b){
+        inBufMode = b;
     }
 }
