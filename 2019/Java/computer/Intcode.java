@@ -1,14 +1,18 @@
 package computer;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Intcode {
     private ArrayList<Integer> tape;
+    private Queue<Integer> inBuf, outBuf;
     private int pc;
-    Scanner input;
+    private boolean isHalted;
 
     public void run(){
+        if(isHalted){return;}
         while(tape.get(pc) != 99 && pc < tape.size()){
             switch(tape.get(pc) % 100){ // last 2 digits are instruction
                 case 1:
@@ -22,7 +26,7 @@ public class Intcode {
                     break;
                 case 4:
                     out(getModes(pc));
-                    break;
+                    return;
                 case 5:
                     jt(getModes(pc));
                     break;
@@ -36,6 +40,7 @@ public class Intcode {
                     eq(getModes(pc));
             }
         }
+        isHalted = true;
     }
 
     private void eq(int[] modes){
@@ -87,13 +92,15 @@ public class Intcode {
     private void out(int[] modes){
         int x;
         x = load(pc + 1, modes[0]);
-        System.out.println(x);
+        outBuf.add(x);
         pc += 2;
     }
 
     private void in(){
-        System.out.print("Awaiting Input: ");
-        int s = input.nextInt();
+        while(inBuf.isEmpty()){
+            //do nothing 
+        }
+        int s = inBuf.remove();
         int d = imm(pc + 1);
         store(d, s);
         pc += 2;
@@ -140,12 +147,50 @@ public class Intcode {
     }
 
     public Intcode(ArrayList<Integer> in, int start){
-        tape = in;
+        tape = clone(in);
         pc = start;
-        input = new Scanner(System.in);
+        inBuf = new LinkedList<Integer>();
+        outBuf = new LinkedList<Integer>();
+        isHalted = false;
+    }
+
+    public Intcode(ArrayList<Integer> in, int start, Integer[] inputs){
+        tape = clone(in);
+        pc = start;
+        inBuf = new LinkedList<Integer>(Arrays.asList(inputs));
+        outBuf = new LinkedList<Integer>();
+        isHalted = false;
+    }
+
+    public Intcode(ArrayList<Integer> in, Integer[] inputs){
+        tape = clone(in);
+        pc = 0;
+        inBuf = new LinkedList<Integer>(Arrays.asList(inputs));
+        outBuf = new LinkedList<Integer>();
+        isHalted = false;
+    }
+
+    private static ArrayList<Integer> clone(ArrayList<Integer> src){
+        ArrayList<Integer> clone = new ArrayList<Integer>();
+        for(int i: src){
+            clone.add(i);
+        }
+        return clone;
+    }
+
+    public int getOutput(){
+        return outBuf.remove();
     }
 
     public int getMemory(int i){
         return imm(i);
+    }
+
+    public boolean isHalted(){
+        return isHalted;
+    }
+
+    public void input(Integer i){
+        inBuf.add(i);
     }
 }
