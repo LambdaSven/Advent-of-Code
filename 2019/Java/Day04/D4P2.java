@@ -5,6 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class D4P2 {
+    /* 
+    * Notice - For this program we are counting digits of a number D₀D₁D₂...Dₙ
+    * This is contrary to the standard DₙDₙ₋₁...D₀. We are doing it this way simply 
+    * so that when we store the digits in an array, the numbers are not stored backwards
+    * That is, instead of {Dₙ, ₙ₋1, ...,D₀} we store them as {D₀, D₁, ..., Dₙ}.
+    * 
+    * By doing this we align the Index with the Digit, rather than having to work through
+    * the arrays backwards to have the digits in the correct order
+    */
     public static void main(String[] args){
         int[] range = parseInput(args[0]);
         int count = countValidPasswords(range[0], range[1]);
@@ -13,8 +22,8 @@ public class D4P2 {
     /**
      * Counts the number of valid passwords between two input values
      * Valid passwords must meet 2 conditions
-     * 1) They must have sequential digits (D₀ ≥ D₁ ≥ D₂ ≥ D₃ ≥ D₄ ≥ D₅)
-     * 2) The must have duplicates that are not part of a larger set (Dₓ = Dₓ₊₁ ≠ Dₓ₊₂ ≠ Dₓ₋₁)
+     *  1) They must have sequential digits (D₀ ≥ D₁ ≥ D₂ ≥ D₃ ≥ D₄ ≥ D₅)
+     *  2) They must have duplicates that are not part of a larger set (Dₓ = Dₓ₊₁ ≠ Dₓ₊₂ ≠ Dₓ₋₁)
      * @param start - The starting value
      * @param end - The ending value
      * @return int - The number of valid passwords
