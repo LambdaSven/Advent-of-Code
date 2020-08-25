@@ -11,9 +11,16 @@ public class D5P2 {
     public static void main(String[] args){
         ArrayList<Integer> tape = parseInput(new File(args[0]));
         Intcode computer = new Intcode(tape, 0);
+        //This program simply checks our new instructions work, so we only need to run the comupter
         computer.run();
     }
 
+    /**
+     * This function parses our input file into the necessary format for use with 
+     * the Intcode class
+     * @param file
+     * @return ArrayList<Integer> - Our instruction Tape
+     */
     public static ArrayList<Integer> parseInput(File file){
         try {
             Scanner in = new Scanner(file);

@@ -12,6 +12,7 @@ public class D7P1 {
         ArrayList<Integer> tape = parseInput(new File(args[0]));
         int max = 0;
 
+        // This is ugly, but works, we run each computer one after the other.
         for(int i = 12345; i < 54321; i++){
             if(validState(i)){
                 int[] digits = splitDigits(i);
@@ -64,7 +65,13 @@ public class D7P1 {
         System.out.printf("The Maximum signal that can be sent is %d\n", max);
     }
 
+    /**
+     * Splits the given num into it's digits
+     * @param num - the number to be split
+     * @return an int[] such that {0, 1, 2, 3, 4} = {D₀, D₁, D₂, D₃, D₄}
+     */
     private static int[] splitDigits(int num){
+        //the number will always be 5 digits
         int[] digits = new int[5];
         for(int i = 4, div = 1; i >= 0; i--, div *= 10){
             digits[i] = num/div % 10;
@@ -72,6 +79,11 @@ public class D7P1 {
         return digits;
     }
 
+    /**
+     * A state is valid if D₀ ≠ D₁ ≠ D₂ ≠ D₃ ≠ D₄
+     * @param state - The state to be checked
+     * @return D₀ ≠ D₁ ≠ D₂ ≠ D₃ ≠ D₄
+     */
     private static boolean validState(int state){
         int[] digits = splitDigits(state);
         for(int i = 0; i < 5; i++){
@@ -84,6 +96,12 @@ public class D7P1 {
         return true;
     }
 
+    /**
+     * This function parses our input file into the necessary format for use with 
+     * the Intcode class
+     * @param file
+     * @return ArrayList<Integer> - Our instruction Tape
+     */
     public static ArrayList<Integer> parseInput(File file){
         try {
             Scanner in = new Scanner(file);

@@ -25,7 +25,14 @@ public class D2P2 {
         }
         System.out.printf("Could not solve");
     }
-
+    /**
+     * We create our own method of cloning our tapes,
+     * because the ArrayList.clone() method return Object
+     * And we don't want to perform a type conversion
+     * 
+     * @param tape - the original tape
+     * @return ArrayList<Integer> - The cloned copy of the tape
+     */
     private static ArrayList<Integer> clone(ArrayList<Integer> tape) {
         ArrayList<Integer> clone = new ArrayList<Integer>();
         for(Integer i : tape){
@@ -34,6 +41,12 @@ public class D2P2 {
         return clone;
     }
 
+    /**
+     * This function parses our input file into the necessary format for use with 
+     * the Intcode class
+     * @param file
+     * @return ArrayList<Integer> - Our instruction Tape
+     */
     public static ArrayList<Integer> parseInput(File file) {
         try {
             Scanner in = new Scanner(file);

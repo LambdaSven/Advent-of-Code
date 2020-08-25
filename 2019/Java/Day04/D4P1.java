@@ -11,10 +11,20 @@ public class D4P1 {
         System.out.printf("There are %d valid passwords \n", count);
     }
 
+    /**
+     * Counts the number of valid passwords between two input values
+     * Valid passwords must meet 2 conditions
+     * 1) They must have sequential digits (D₀ ≥ D₁ ≥ D₂ ≥ D₃ ≥ D₄ ≥ D₅)
+     * 2) The must have duplicates (Dₓ = Dₓ₊₁)
+     * @param start - The starting value
+     * @param end - The ending value
+     * @return int - The number of valid passwords
+     */
     private static int countValidPasswords(int start, int end){
         int count = 0;
         for(int i = start; i < end; i++){
             int[] digits = split(i);
+            //Check condition 1 and 2
             if(areSequential(digits) && hasDoubles(digits)){
                 count++;
             }
@@ -22,6 +32,11 @@ public class D4P1 {
         return count;
     }
 
+    /**
+     * Checks if the given number has any duplicated digits (Dₓ = Dₓ₊₁)
+     * @param digits - The number as an int[] of digits
+     * @return boolean Any Dₓ = Dₓ₊₁
+     */
     private static boolean hasDoubles(int[] digits){
         boolean out = false;
         for(int i = 0; i < digits.length-1; i++){
@@ -32,6 +47,11 @@ public class D4P1 {
         return out;
     }
 
+    /**
+     * Checks if the number has all sequential digits (D₀ ≥ D₁ ≥ D₂ ≥ D₃ ≥ D₄ ≥ D₅)
+     * @param digits - The number represented as an int[] if digits
+     * @return boolean (D₀ ≥ D₁ ≥ D₂ ≥ D₃ ≥ D₄)
+     */
     private static boolean areSequential(int[] digits){
         boolean out = true;
         for(int i = 0; i < digits.length-1; i++){
@@ -42,14 +62,26 @@ public class D4P1 {
         return out;
     }
 
+    /**
+     * Splits a 6 digit number into an int[] where each element is a seperate digit
+     * {x₀, x₁, x₂, x₃, x₄, x₅} = {D₀, D₁, D₂, D₃, D₄, D₅}
+     * @param digits - The number to be split
+     * @return int[] representing the digits
+     */
     private static int[] split(int num){
         int[] dig = new int[6]; //Input will always be 6 digits
+        //The array works backwards because we want dig[0] to be the MSB, backwards from traditional notation
         for(int i = 5, div = 1; i >= 0; i--, div *= 10){
             dig[i] = num/div % 10;
         }
         return dig;
     }
 
+    /**
+     * Parses the input into an int[] containing the range of passwords to search
+     * @param s - The file path
+     * @return int[] containing the start and end point of the range
+     */
     private static int[] parseInput(String s){
         File file = new File(s);
         int[] out = new int[2];
