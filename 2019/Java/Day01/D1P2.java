@@ -40,7 +40,7 @@ public class D1P2 {
     private int fuelConv(int i){
         int val = i/3 - 2;
         // Recursively calculate fuel values until the results are below 0
-        return (val > 0 ? (val + fuelConv(val)) : val);
+        return (val > 0 ? (val + fuelConv(val)) : 0);
     }
 
     public static void main(String args[]){
