@@ -21,7 +21,7 @@ public class D1P2 {
       Scanner in = new Scanner(file);
 
       while(in.hasNextInt()){
-          mass.add(in.nextInt());
+        mass.add(in.nextInt());
       }
       in.close();
     } catch (FileNotFoundException e){
