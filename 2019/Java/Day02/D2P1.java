@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import computer.Intcode;
+import computer.Intcode_Day02;
 
 public class D2P1 {
   public static void main(String[] args){
@@ -16,9 +16,9 @@ public class D2P1 {
     tape.set(1, 12);
     tape.set(2, 2);
     
-    Intcode computer = new Intcode(tape, 0);
+    Intcode_Day02 computer = new Intcode_Day02(tape);
     computer.run();
-    System.out.printf("The value in position 0 is %d", computer.getMemory(0));
+    System.out.printf("The value in position 0 is %d\n", computer.getMemory(0));
   }
 
   /**
@@ -31,7 +31,7 @@ public class D2P1 {
     try {
       Scanner in = new Scanner(file);
       String[] temp = in.nextLine().split(",");
-      ArrayList<Integer> al = new ArrayList<>(200000); // Allocate large amount of memory to computer
+      ArrayList<Integer> al = new ArrayList<>();
       in.close();
 
       for(String s : temp){

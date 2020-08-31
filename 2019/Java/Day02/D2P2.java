@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import computer.Intcode;
+import computer.Intcode_Day02;
 
 public class D2P2 {
   public static void main(String[] args){
@@ -15,7 +15,7 @@ public class D2P2 {
         ArrayList<Integer> clone = clone(tape);
         clone.set(1, i);
         clone.set(2, j);
-        Intcode computer = new Intcode(clone, 0);
+        Intcode_Day02 computer = new Intcode_Day02(clone);
         computer.run();
         if(computer.getMemory(0) == 19690720){
           System.out.printf("%d\n", 100 * i + j);
@@ -51,7 +51,7 @@ public class D2P2 {
     try {
       Scanner in = new Scanner(file);
       String[] temp = in.nextLine().split(",");
-      ArrayList<Integer> al = new ArrayList<>(200000); // Allocate large memory
+      ArrayList<Integer> al = new ArrayList<>(); // Allocate large memory
       in.close();
 
       for(String s : temp){

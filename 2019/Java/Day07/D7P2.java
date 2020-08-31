@@ -22,24 +22,6 @@ public class D7P2 {
         Intcode computer4 = new Intcode(tape, new Integer[]{digits[3]});
         Intcode computer5 = new Intcode(tape, new Integer[]{digits[4]});
 
-        computer1.setPipeMode(true);
-        computer2.setPipeMode(true);
-        computer3.setPipeMode(true);
-        computer4.setPipeMode(true);
-        computer5.setPipeMode(true);
-
-        computer1.setInBuf(true);
-        computer2.setInBuf(true);
-        computer3.setInBuf(true);
-        computer4.setInBuf(true);
-        computer5.setInBuf(true);
-
-        computer1.setOutBuf(true);
-        computer2.setOutBuf(true);
-        computer3.setOutBuf(true);
-        computer4.setOutBuf(true);
-        computer5.setOutBuf(true);
-
         Integer pipe = 0;
         // We loop until any of the machines halt, passing the output from each stage into the next
         while(true){

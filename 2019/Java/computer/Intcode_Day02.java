@@ -40,9 +40,9 @@ public class Intcode_Day02 {
   }
 
 
-  public Intcode_Day02(ArrayList<Integer> in, int start){
+  public Intcode_Day02(ArrayList<Integer> in){
     tape = in;
-    pc = start;
+    pc = 0;
   }
 
   public int getMemory(int i){

@@ -141,9 +141,9 @@ public class Intcode_Day05 {
     tape.set(d, s);
   }
 
-  public Intcode_Day05(ArrayList<Integer> in, int start){
+  public Intcode_Day05(ArrayList<Integer> in){
     tape = in;
-    pc = start;
+    pc = 0;
     input = new Scanner(System.in);
   }
 

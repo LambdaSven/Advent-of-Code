@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import computer.Intcode;
+import computer.Intcode_Day05;
 
 public class D5P2 {
   public static void main(String[] args){
     ArrayList<Integer> tape = parseInput(new File(args[0]));
-    Intcode computer = new Intcode(tape, 0);
+    Intcode_Day05 computer = new Intcode_Day05(tape);
     //This program simply checks our new instructions work, so we only need to run the comupter
     computer.run();
   }

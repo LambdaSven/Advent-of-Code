@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import computer.Intcode;
+import computer.Intcode_Day07;
 
 public class D7P1 {
   public static void main(String[] args){
@@ -17,42 +17,27 @@ public class D7P1 {
       if(validState(i)){
         int[] digits = splitDigits(i);
         Integer[] in = {digits[0], 0};
-        Intcode computer1 = new Intcode(tape, in);
-        computer1.setPipeMode(true);
-        computer1.setInBuf(true);
-        computer1.setOutBuf(true);
+        Intcode_Day07 computer1 = new Intcode_Day07(tape, in);
         computer1.run();
 
         in[0] = digits[1];
         in[1] = computer1.getOutput();
-        Intcode computer2 = new Intcode(tape, in);
-        computer2.setPipeMode(true);
-        computer2.setInBuf(true);
-        computer2.setOutBuf(true);
+        Intcode_Day07 computer2 = new Intcode_Day07(tape, in);
         computer2.run();
 
         in[0] = digits[2];
         in[1] = computer2.getOutput();
-        Intcode computer3 = new Intcode(tape, in);
-        computer3.setPipeMode(true);
-        computer3.setInBuf(true);
-        computer3.setOutBuf(true);
+        Intcode_Day07 computer3 = new Intcode_Day07(tape, in);
         computer3.run();
 
         in[0] = digits[3];
         in[1] = computer3.getOutput();
-        Intcode computer4 = new Intcode(tape, in);
-        computer4.setPipeMode(true);
-        computer4.setInBuf(true);
-        computer4.setOutBuf(true);
+        Intcode_Day07 computer4 = new Intcode_Day07(tape, in);
         computer4.run();
 
         in[0] = digits[4];
         in[1] = computer4.getOutput();
-        Intcode computer5 = new Intcode(tape, in);
-        computer5.setPipeMode(true);
-        computer5.setInBuf(true);
-        computer5.setOutBuf(true);
+        Intcode_Day07 computer5 = new Intcode_Day07(tape, in);
         computer5.run();
 
         int out = computer5.getOutput();
@@ -98,7 +83,7 @@ public class D7P1 {
 
   /**
    * This function parses our input file into the necessary format for use with 
-   * the Intcode class
+   * the Intcode_Day07 class
    * @param file
    * @return ArrayList<Integer> - Our instruction Tape
    */

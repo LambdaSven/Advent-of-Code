@@ -12,7 +12,7 @@ import java.util.Queue;
  *  outBufMode: Instead of outputting directly, the machine will store the output in a buffer
  *  inBufMode: Instead of requesting input from user, the machine will read from an input buffer.
  */
-public class Intcode {
+public class Intcode_Day07 {
   private ArrayList<Integer> tape;
   private Queue<Integer> inBuf, outBuf;
   private int pc;
@@ -225,7 +225,7 @@ public class Intcode {
    * And sets the modes of the machine to their default setting
    * @param in - The input tape
    */
-  public Intcode(ArrayList<Integer> in, Integer[] inputs){
+  public Intcode_Day07(ArrayList<Integer> in, Integer[] inputs){
     tape = clone(in);
     isHalted = false;
     outBuf = new LinkedList<Integer>();
