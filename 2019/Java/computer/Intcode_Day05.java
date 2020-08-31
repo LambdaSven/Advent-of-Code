@@ -10,6 +10,10 @@ public class Intcode_Day05 {
   private int pc;
   Scanner input;
 
+
+  /**
+   * Runs until opcode 99 encountered or pc moves beyond end of tape
+   */
   public void run(){
     while(tape.get(pc) != 99 && pc < tape.size()){
       switch(tape.get(pc) % 100){ // last 2 digits are instruction
@@ -40,6 +44,11 @@ public class Intcode_Day05 {
     }
   }
 
+  /**
+   * Evaluates if two values are equal, storing 1 or 0 into 
+   * the requested address based on equality
+   * @param modes The addressing modes of the paramaters
+   */
   private void eq(int[] modes){
     if(load(pc + 1, modes[0]) == load(pc+2, modes[1])){
       store(imm(pc+3), 1);
@@ -48,7 +57,12 @@ public class Intcode_Day05 {
     }
     pc += 4;
   }
-  
+
+  /**
+   * Evaluates if P₁ < P₂, storing 1 or 0 into 
+   * the requested address based on the result
+   * @param modes The addressing modes of the paramaters
+   */
   private void lt(int[] modes){
     if(load(pc + 1, modes[0]) < load(pc+2, modes[1])){
       store(imm(pc+3), 1);
@@ -58,6 +72,11 @@ public class Intcode_Day05 {
     pc += 4;
   }
 
+/**
+   * Moves to Program counter to the specified location
+   * if P₁ = 0
+   * @param modes The addressing modes of the paramaters
+   */
   private void jf(int[] modes){
     if(load(pc+1, modes[0]) == 0){
       int d = load(pc+2, modes[1]);
@@ -67,6 +86,11 @@ public class Intcode_Day05 {
     }
   }
 
+  /**
+   * Moves to Program counter to the specified location
+   * if P₁ ≠ 0
+   * @param modes The addressing modes of the paramaters
+   */
   private void jt(int[] modes){
     if(load(pc+1, modes[0]) != 0){
       int d = load(pc+2, modes[1]);
@@ -76,6 +100,12 @@ public class Intcode_Day05 {
     }
   }
 
+  /**
+   * Retrives the paramater modes from the instruction
+   * {0, 1, 2} are the Modes for {P₁, P₂, P₃}
+   * @param m the instruction being passed
+   * @return the paramater Modes
+   */
   private int[] getModes(int m){
     m = imm(m);
     int[] out = new int[3];
@@ -86,6 +116,10 @@ public class Intcode_Day05 {
     return out;
   }
 
+  /**
+   * Outputs the value stored at P₁ to the console
+   * @param modes The addressing modes of the paramaters
+   */
   private void out(int[] modes){
     int x;
     x = load(pc + 1, modes[0]);
@@ -93,6 +127,9 @@ public class Intcode_Day05 {
     pc += 2;
   }
 
+  /**
+   * Reads input from the user and stores it into memory
+   */
   private void in(){
     System.out.print("Awaiting Input: ");
     int s = input.nextInt();
@@ -101,6 +138,10 @@ public class Intcode_Day05 {
     pc += 2;
   }
 
+  /**
+   * Adds P₁ + P₂ and stores the result in P₃
+   * @param modes The addressing modes of the paramaters
+   */
   private void add(int[] modes){
     int a = load(pc+1, modes[0]);
     int b = load(pc+2, modes[1]);
@@ -109,6 +150,10 @@ public class Intcode_Day05 {
     pc += 4;
   }
 
+  /**
+   * Multiplies P₁ * P₂ and stores the result in P₃
+   * @param modes The addressing modes of the paramaters
+   */
   private void mul(int[] modes){
     int a = load(pc+1, modes[0]);
     int b = load(pc+2, modes[1]);
@@ -117,7 +162,14 @@ public class Intcode_Day05 {
     pc += 4;
   }
 
-  // load with mode switching
+  /**
+   * Returns the required data based on the passed mode
+   *  0 - Direct Mode
+   *  1 - Immediate Mode
+   * @param a - The Parameter being handled
+   * @param m - The mode of a
+   * @return The required value from the parameter
+   */
   private int load(int a, int m){
     if(m == 0){
       return dir(a);
@@ -126,27 +178,48 @@ public class Intcode_Day05 {
     }
   }
 
-  //Immediate Load
+  /**
+   * Immediate Load - returns the literal value stored at the index
+   * @param i - The tape Index
+   * @return tape[i]
+   */
   private int imm(int i){
     return tape.get(i);
   }
   
-  //Direct Load
+  /**
+   * Direct Load - Returns the value stored in the address referred to by the index
+   * @param i - The index
+   * @return tape[tape[i]];
+   */
   private int dir(int i){
     return tape.get(imm(i));
   }    
 
-  // Store in Destination Address the data from S.
+  /**
+   * Store the data in s to the location d
+   * @param d - The destination address
+   * @param s - The source Data
+   */
   private void store(int d, int s){
     tape.set(d, s);
   }
 
+  /**
+   * Constructor loads the tape into memory, and
+   * initilizes our scanner (for reading user input)
+   */
   public Intcode_Day05(ArrayList<Integer> in){
     tape = in;
     pc = 0;
     input = new Scanner(System.in);
   }
 
+  /**
+   * Returns the value stored in a particular address
+   * @param i - the address to retrieve data from
+   * @return the data stored at tape[i]
+   */
   public int getMemory(int i){
     return imm(i);
   }

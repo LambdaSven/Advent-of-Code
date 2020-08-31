@@ -7,10 +7,6 @@ import java.util.Queue;
 
 /**
  * Intcode Computer used for many problems in AOC 2019. 
- * Modes:
- *  pipeMode: The machine will halt after every output, as if sending it along a pipe
- *  outBufMode: Instead of outputting directly, the machine will store the output in a buffer
- *  inBufMode: Instead of requesting input from user, the machine will read from an input buffer.
  */
 public class Intcode_Day07 {
   private ArrayList<Integer> tape;
@@ -127,9 +123,7 @@ public class Intcode_Day07 {
   }
 
   /**
-   * Outputs the value stored at P₁ to console 
-   * or to the output buffer depending on the state
-   * of outBufMode
+   * Outputs the value stored at P₁ to the output buffer 
    * @param modes The addressing modes of the paramaters
    */
   private void out(int[] modes){
@@ -140,9 +134,7 @@ public class Intcode_Day07 {
   }
 
   /**
-   * Reads input either from STDIN
-   * or from the input buffer depending
-   * on the state of inBufMode
+   * Reads input from the input buffer and stores it into memory
    */
   private void in(){
     int s;
@@ -220,9 +212,8 @@ public class Intcode_Day07 {
   }
 
   /**
-   * This constructor is used by all the others, 
-   * Create a clone of the input tape (So that the original is intact)
-   * And sets the modes of the machine to their default setting
+   * Create a clone of the input tape (So that the original is intact),
+   * Initilizes the I/O buffers, and sets isHalted to false
    * @param in - The input tape
    */
   public Intcode_Day07(ArrayList<Integer> in, Integer[] inputs){
