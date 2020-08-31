@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import computer.Intcode;
+import computer.Intcode_Day07;
 
 public class D7P2 {
   public static void main(String[] args){
@@ -16,11 +16,11 @@ public class D7P2 {
       if(validState(i)){
         int[] digits = splitDigits(i);
         //Init all computers
-        Intcode computer1 = new Intcode(tape, new Integer[]{digits[0]});
-        Intcode computer2 = new Intcode(tape, new Integer[]{digits[1]});
-        Intcode computer3 = new Intcode(tape, new Integer[]{digits[2]});
-        Intcode computer4 = new Intcode(tape, new Integer[]{digits[3]});
-        Intcode computer5 = new Intcode(tape, new Integer[]{digits[4]});
+        Intcode_Day07 computer1 = new Intcode_Day07(tape, new Integer[]{digits[0]});
+        Intcode_Day07 computer2 = new Intcode_Day07(tape, new Integer[]{digits[1]});
+        Intcode_Day07 computer3 = new Intcode_Day07(tape, new Integer[]{digits[2]});
+        Intcode_Day07 computer4 = new Intcode_Day07(tape, new Integer[]{digits[3]});
+        Intcode_Day07 computer5 = new Intcode_Day07(tape, new Integer[]{digits[4]});
 
         Integer pipe = 0;
         // We loop until any of the machines halt, passing the output from each stage into the next
@@ -91,7 +91,7 @@ public class D7P2 {
 
   /**
    * This function parses our input file into the necessary format for use with 
-   * the Intcode class
+   * the Intcode_Day07 class
    * @param file
    * @return ArrayList<Integer> - Our instruction Tape
    */
