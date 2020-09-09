@@ -1,0 +1,1 @@
+## Full Writeup on Day 2 available [here](https://sasmith.ca/index.php/2020/08/27/aoc2019-2/)
