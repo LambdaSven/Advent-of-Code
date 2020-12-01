@@ -7,6 +7,9 @@ import java.util.Set;
 
 import aocutil.Utilities;
 
+/**
+ * Solution for Day 1, Part 2 in O(n²) using caching
+ */
 public class D1P2 {
   public static void main(String[] args){
     final int TARGET = 2020;
@@ -15,7 +18,7 @@ public class D1P2 {
     ArrayList<Integer> data = Utilities.parseToInts(new File(args[0]));
     Set<Integer> cache = new HashSet<Integer>();
     cache.add(data.get(0));
-    
+
     //O(n²)
     for(int i = 0; i < data.size(); i++){
       for(int j = i+1; j < data.size(); j++){

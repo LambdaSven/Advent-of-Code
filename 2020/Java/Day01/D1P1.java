@@ -7,6 +7,9 @@ import java.util.Set;
 
 import aocutil.Utilities;
 
+/**
+ * Solution for Day 1, Part 1 in O(n) using caching
+ */
 public class D1P1 {
   public static void main(String[] args){
     final int TARGET = 2020;
