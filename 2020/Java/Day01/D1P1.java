@@ -21,6 +21,8 @@ public class D1P1 {
 
     //O(n)
     for(int i = 1; i < data.size(); i++){
+      // if the set contains some a = x - b
+      // then we know that a + b = x
       if(cache.contains(TARGET - data.get(i))){
         //match!
         product = data.get(i) * (TARGET - data.get(i));

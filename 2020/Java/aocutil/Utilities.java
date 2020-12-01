@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
+/**
+ * Custom Library for standard utilies used throughout Advent of Code
+ */
 public class Utilities {
 
   public static ArrayList<Integer> parseToInts(File fd){
