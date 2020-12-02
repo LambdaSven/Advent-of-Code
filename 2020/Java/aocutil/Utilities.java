@@ -34,8 +34,8 @@ public class Utilities {
     ArrayList<Integer> out = null;
     try{
       out = lines.stream()
-            .map(e -> Integer.parseInt(e))
-            .collect(Collectors.toCollection(ArrayList::new));
+                 .map(e -> Integer.parseInt(e))
+                 .collect(Collectors.toCollection(ArrayList::new));
     } catch (NumberFormatException e){
       e.printStackTrace();
       System.exit(1);

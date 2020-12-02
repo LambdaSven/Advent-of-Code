@@ -11,10 +11,10 @@ import aocutil.Utilities;
 public class D2P1 {
   public static void main(String[] args){
     long countValid = Utilities.parseInputFile(new File(args[0])) //ArrayList
-      .stream()
-      .map(e -> new Password(e, 1))
-      .filter(Password::isValid)
-      .count();
+                               .stream()
+                               .map(e -> new Password(e, 1))
+                               .filter(Password::isValid)
+                               .count();
 
     System.out.printf("The number of Valid passwords in your list is %d\n", countValid);
   }

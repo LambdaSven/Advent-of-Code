@@ -33,8 +33,8 @@ public class Password {
 
   private boolean checkValid(){
     long count = password.chars() // creates an IntStream from our string
-                        .filter(e -> e == key)
-                        .count();
+                         .filter(e -> e == key)
+                         .count();
 
     return count <= max && count >= min;
   }
