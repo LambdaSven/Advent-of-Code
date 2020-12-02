@@ -1,9 +1,6 @@
 package Day02;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import aocutil.Utilities;
 
 /**
@@ -13,14 +10,11 @@ import aocutil.Utilities;
  */
 public class D2P2 {
   public static void main(String[] args){
-    ArrayList<String> input = Utilities.parseInputFile(new File(args[0]));
-    ArrayList<Password> passwords = input.stream()
-                                          .map(e -> new Password(e, 2))
-                                          .collect(Collectors.toCollection(ArrayList::new));
-
-    long countValid = passwords.stream()
-                              .filter(Password::isValid)
-                              .count();
+    long countValid = Utilities.parseInputFile(new File(args[0])) //ArrayList
+      .stream()
+      .map(e -> new Password(e, 2))
+      .filter(Password::isValid)
+      .count();
 
     System.out.printf("The number of Valid passwords in your list is %d\n", countValid);
   }
