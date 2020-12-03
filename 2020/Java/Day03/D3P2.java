@@ -10,6 +10,12 @@ public class D3P2 {
     ArrayList<String> input = Utilities.parseInputFile(new File(args[0]));
     Forest forest = new Forest(input);
 
+    /*
+      Since the result of part 1 was three digits, we have an estimated
+      order of magnitude of 10¹⁰. This would be pushing the limits of an int
+      and would be likely to overflow. A long has an order of magnitude of 
+      10¹⁹, so the result will fit comfortably.
+    */
     long treeCount = forest.treeCount(1, 1);
     treeCount *= forest.treeCount(3, 1);
     treeCount *= forest.treeCount(5, 1);
