@@ -18,15 +18,13 @@ public class D7P2 {
                                                   (k1, k2) -> k1,
                                                   HashMap::new));
     
-    System.out.printf("Your bag contains %d other bags", part2(bags));
+    System.out.printf("Your bag contains %d other bags\n", part2(bags));
   }
 
   public static int part2(HashMap<String, Bag> bags){
-    int count = 0;
-    Bag root = bags.get("shiny gold bag");
+    Bag root = bags.get("shiny gold bag"); 
 
-    count += countChildren(bags, root, 1);
-    return count;
+    return countChildren(bags, root, 1);
   }
 
   public static int countChildren(HashMap<String, Bag> bags, Bag root, int mul){

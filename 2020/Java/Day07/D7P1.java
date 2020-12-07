@@ -19,19 +19,14 @@ public class D7P1 {
                                                   (k1, k2) -> k1,
                                                   HashMap::new));
     
-    System.out.printf("There are %d valid bags", part1Count(bags));
+    System.out.printf("There are %d valid bags\n", part1Count(bags));
   }
 
   public static int part1Count(HashMap<String, Bag> bags){
-    int count = 0;
-    for(String s : bags.keySet()){
-
-      if(bags.get(s).getContents().containsKey("shiny gold bag")
-         || childrenContain(bags.get(s), "shiny gold bag", bags)){
-        count++;
-      } 
-    }
-    return count;
+    return (int) bags.keySet().stream()
+                              .filter(e -> bags.get(e).getContents().containsKey("shiny gold bag")
+                                      || childrenContain(bags.get(e), "shiny gold bag", bags))
+                              .count();
   }
 
   public static boolean childrenContain(Bag b, String target, HashMap<String, Bag> bags){
