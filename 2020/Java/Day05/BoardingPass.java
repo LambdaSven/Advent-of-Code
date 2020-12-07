@@ -10,13 +10,12 @@ public class BoardingPass {
   }
 
   private void parsePass(){
-    int minRow = 0, maxRow = 127, rowPart = 64;
-    int minCol = 0, maxCol = 7, colPart = 4;
+    int minRow = 0, rowPart = 64;
+    int minCol = 0, colPart = 4;
     char[] chars = pass.toCharArray();
     for(int i = 0; i < chars.length; i++){
       switch(chars[i]){
         case 'F':
-          maxRow -= rowPart;
           rowPart /= 2;
           break;
         case 'B':
@@ -24,7 +23,6 @@ public class BoardingPass {
           rowPart /= 2;
           break;
         case 'L':
-          maxCol -= colPart;
           colPart /= 2;
           break;
         case 'R':
