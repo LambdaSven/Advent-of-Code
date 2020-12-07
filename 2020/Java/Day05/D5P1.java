@@ -2,7 +2,6 @@ package Day05;
 
 import aocutil.Utilities;
 import java.io.File;
-import java.util.ArrayList;
 
 public class D5P1 {
   public static void main(String[] args){
