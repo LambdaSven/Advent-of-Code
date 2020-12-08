@@ -27,10 +27,8 @@ public class D8P2 {
       }
     }
 
-    computers.parallelStream()
-             .forEach(Bootcode::run);
-    
-    Bootcode success = computers.stream()
+    Bootcode success = computers.parallelStream()
+                                .peek(e -> e.run())
                                 .filter(Bootcode::terminates)
                                 .findFirst()
                                 .orElse(new Bootcode(null));
