@@ -46,15 +46,7 @@ public class Bootcode {
     return accumulator;
   }
 
-  public Integer getProgramCounter(){
-    return programCounter;
-  }
-
   public boolean terminates(){
     return !infiniteLoop;
-  }
-
-  public String getInstruction(int pc){
-    return code.get(pc);
   }
 }

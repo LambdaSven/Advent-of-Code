@@ -12,6 +12,7 @@ public class D8P2 {
     ArrayList<Bootcode> computers = new ArrayList<Bootcode>();
     computers.add(new Bootcode(code));
 
+    //Generate all computers
     for(int i = 0; i < code.size(); i++){
       if(code.get(i).contains("jmp")){
         String opcode = code.get(i);
@@ -27,15 +28,16 @@ public class D8P2 {
       }
     }
 
-    Bootcode success = computers.parallelStream()
-                                .peek(e -> e.run())
-                                .filter(Bootcode::terminates)
-                                .findFirst()
-                                .orElse(new Bootcode(null));
+    Bootcode success = computers.parallelStream() // this procedure is embarrassingly parallel, so no concerns here
+                                .peek(e -> e.run()) //run the computesr
+                                .filter(Bootcode::terminates) // find the one that terminates
+                                .findFirst() // convert single length stream into value
+                                .orElse(new Bootcode(null)); // in case findFirst() fails
 
     System.out.printf("The value of the accumulator at halting time is %d\n", success.getAccumulator());
   }
 
+  // Java is pass by reference - gotta make a deep copy
   public static ArrayList<String> deepCopy(ArrayList<String> src){
     ArrayList<String> out = new ArrayList<String>();
     for(String s : src){
