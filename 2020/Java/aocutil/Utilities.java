@@ -14,6 +14,10 @@ public class Utilities {
     return listToInts(parseInputFile(fd));
   }
 
+  public static ArrayList<Long> parseToLong(File fd){
+    return listToLong(parseInputFile(fd));
+  }
+
   //parse an input file into an arraylist of lines
   public static ArrayList<String> parseInputFile (File fd){
     ArrayList<String> out = new ArrayList<String>();
@@ -35,6 +39,19 @@ public class Utilities {
     try{
       out = lines.stream()
                  .map(e -> Integer.parseInt(e))
+                 .collect(Collectors.toCollection(ArrayList::new));
+    } catch (NumberFormatException e){
+      e.printStackTrace();
+      System.exit(1);
+    }
+    return out;
+  }
+
+  public static ArrayList<Long> listToLong(ArrayList<String> lines){
+    ArrayList<Long> out = null;
+    try{
+      out = lines.stream()
+                 .map(e -> Long.parseLong(e))
                  .collect(Collectors.toCollection(ArrayList::new));
     } catch (NumberFormatException e){
       e.printStackTrace();
