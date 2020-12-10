@@ -29,7 +29,7 @@ public class D8P2 {
     }
 
     Bootcode success = computers.parallelStream() // this procedure is embarrassingly parallel, so no concerns here
-                                .peek(e -> e.run()) //run the computesr
+                                .peek(e -> e.run()) //run the computers
                                 .filter(Bootcode::terminates) // find the one that terminates
                                 .findFirst() // convert single length stream into value
                                 .orElse(new Bootcode(null)); // in case findFirst() fails
