@@ -82,8 +82,10 @@ public class Lobby {
       for(int j = -1; j < 2; j++){
         int targetX = x + j;
         int targetY = y + i;
+        
         if(j == 0 && i == 0){
           continue; // don't count my own seat
+
         } else if(targetY >= 0 && targetY < map.length && 
                   targetX >= 0 && targetX < map[targetY].length){
           if(map[targetY][targetX].equals(Seat.OCCUPIED)){
