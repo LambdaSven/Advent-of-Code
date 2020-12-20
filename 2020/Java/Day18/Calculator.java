@@ -1,7 +1,6 @@
 package Day18;
 
 import java.util.Stack;
-import java.util.Collections;
 
 public class Calculator {
   Stack<Long> stack = new Stack<Long>();
