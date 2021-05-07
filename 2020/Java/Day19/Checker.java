@@ -28,7 +28,6 @@ public class Checker {
   public void compile(Integer n){
     System.out.println("Generating Regex ...");
     regex = "( " + rules.get(n) + " )";
-    int counter = 0;
     while(regex.matches(".*\\d.*")){
       String[] temp = regex.split(" ");
       for(String s : temp){
