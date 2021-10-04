@@ -6,26 +6,20 @@ open System.IO
 type expr = 
     { 
         OperatingRegister : string
-        Instruction : int -> int -> int
+        Instruction : int -> int -> int // can only be (+) or (-)
         Argument : int
         ConditionalRegister : string
         Condition : int -> int -> bool
         ConditionalValue : int
     }
 
-let inc x y =
-    x + y
-
-let dec x y =
-    x - y
-
 let ParseExpr (str : string) =
     let split = str.Split(" ")
     let reg = split.[0]
     let instruction = 
         match split.[1] with
-            | "inc" -> inc
-            | "dec" -> dec
+            | "inc" -> (+)
+            | "dec" -> (-)
             | x -> failwithf "%s is not a valid instruction" x
     let arg = split.[2] |> int
 
