@@ -14,10 +14,12 @@ let move (a, b) str =
   | _ -> failwith "String is Malformatted"
 
 let part1 list = 
-  Seq.fold
-  <| (fun acc (a, b) -> move acc a <| b)
-  <| (0, 0)
-  <| list
+  let a, b = 
+    Seq.fold
+    <| (fun acc (a, b) -> move acc a <| b)
+    <| (0, 0)
+    <| list
+  a * b
 
 let move2 (a, b, c) str =
   match str with
@@ -27,12 +29,15 @@ let move2 (a, b, c) str =
   | _ -> failwith "String is Malformatted"
   
 let part2 list = 
+  let a, b, _ = 
     Seq.fold
     <| (fun acc (a, b) -> move2 acc a <| b)
     <| (0, 0, 0)
     <| list
+  a * b
+
 [<EntryPoint>]
 let main argv =
-  getInput () |> part1 |> (fun (a, b) -> a * b) |> printf("Part1: %d\n")
-  getInput () |> part2 |> (fun (a, b, _) -> a * b) |> printf("Part1: %d\n")
+  getInput () |> part1 |> printf("Part1: %d\n")
+  getInput () |> part2 |> printf("Part1: %d\n")
   0 // return an integer exit code
