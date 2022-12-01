@@ -9,3 +9,4 @@ obj/
 *.txt
 *.sqlite
 *.ionide
+*.vscode
