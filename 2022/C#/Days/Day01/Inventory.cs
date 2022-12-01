@@ -1,21 +1,21 @@
 namespace nDay01
 {
-    public class Inventory
+    public class Backpack
     {
-        List<int> backpack;
-        public Inventory()
+        List<int> contents;
+        public Backpack()
         {
-            backpack = new();
+            contents = new();
         }
 
         public void Pack(int i)
         {
-            backpack.Add(i);
+            contents.Add(i);
         }
 
         public int calorieSum()
         {
-            return backpack.Sum();
+            return contents.Sum();
         }
     }
 }

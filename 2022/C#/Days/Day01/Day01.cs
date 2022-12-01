@@ -5,23 +5,23 @@ namespace aoc
     class Day01 : Day
     {
         List<String> Input;
-        List<Inventory> Inventories;
+        List<Backpack> Backpacks;
         public Day01()
         {
             Input = Utils.ParseInputToStringList(1);
 
-            Inventories = CatalogueInventories();
+            Backpacks = InventoryBackpacks();
         }
         public override string Part1()
         {
-            List<int> sums = Inventories.Select(e => e.calorieSum()).ToList();
+            List<int> sums = Backpacks.Select(e => e.calorieSum()).ToList();
 
             return sums.Max().ToString();
         }
 
         public override string Part2()
         {
-            List<int> sums = Inventories.Select(e => e.calorieSum()).ToList();
+            List<int> sums = Backpacks.Select(e => e.calorieSum()).ToList();
             sums.Sort();
             sums.Reverse();
             int top3 = sums[0] + sums[1] + sums[2];
@@ -29,11 +29,11 @@ namespace aoc
             return top3.ToString();
         }
 
-        private List<Inventory> CatalogueInventories()
+        private List<Backpack> InventoryBackpacks()
         {
-            List<Inventory> invs = new();
+            List<Backpack> invs = new();
 
-            Inventory i = new Inventory();
+            Backpack i = new Backpack();
             invs.Add(i);
 
             foreach (String s in Input)
@@ -44,7 +44,7 @@ namespace aoc
                 }
                 else
                 {
-                    i = new Inventory();
+                    i = new Backpack();
                     invs.Add(i);
                 }
             }
