@@ -1,6 +1,6 @@
 namespace nDay01
 {
-    public class Backpack
+    class Backpack
     {
         List<int> contents;
         public Backpack()
