@@ -1,6 +1,6 @@
 import { parseFileToStringArray, removeEmptyLines } from "../Utils/fileParser";
 
-export abstract class Day012023 {
+export abstract class Day01 {
 
     static Part1(): string {
         const input: string[] = removeEmptyLines(parseFileToStringArray('day01'))

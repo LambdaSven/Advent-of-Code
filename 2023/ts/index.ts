@@ -1,3 +1,5 @@
-import { Day012023 } from "./Days/Day012023";
+import { Day01} from "./Days/Day01";
+import { Day02 } from "./Days/Day02";
 
-console.log(Day012023.BothParts())
+console.log(Day01.BothParts())
+console.log(Day02.BothParts());
