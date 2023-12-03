@@ -16,9 +16,14 @@ function removeEmptyLines(inputs: string[]): string[] {
     return inputs.filter(e => e !== '')
 }
 
+function parseFileTo2dStringArray(inputName: string): string[][] {
+    return removeEmptyLines(parseFileToStringArray(inputName)).map(e => e.split(''));
+}
+
 export {
     parseFileToStringArray,
     parseFileToString,
     parseFileToCharArray,
-    removeEmptyLines
+    removeEmptyLines,
+    parseFileTo2dStringArray
 }
