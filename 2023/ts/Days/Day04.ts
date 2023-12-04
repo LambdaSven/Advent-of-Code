@@ -79,13 +79,4 @@ class scratchTicket {
         //console.log(count)
         return count;
     }
-
-    copy(): scratchTicket {
-        const newTicket = new scratchTicket(this.id);
-        newTicket.selectedNumbers = this.selectedNumbers;
-        newTicket.winningNumbers = this.winningNumbers;
-        newTicket.score = this.score;
-        newTicket.matches = this.matches
-        return newTicket;
-    }
 }
