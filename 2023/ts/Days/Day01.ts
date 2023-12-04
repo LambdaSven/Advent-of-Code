@@ -20,7 +20,14 @@ export abstract class Day01 {
     }
 
     static BothParts(): string {
-        return `Day 1 - 2023: \n\tPart 1: ${this.Part1()}\n\tPart 2: ${this.Part2()}`
+        let start = performance.now();
+        const ans1 = this.Part1();
+        const t1 = (performance.now() - start).toPrecision(3);
+
+        start = performance.now();
+        const ans2 = this.Part2();
+        const t2 = (performance.now() - start).toPrecision(3);
+        return `Day 1 - 2023: \n\tPart 1: ${ans1} (${t1}ms)\n\tPart 2: ${ans2} (${t2}ms)`
     }
 
     private static getNumbers(input: string): string {
