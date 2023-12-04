@@ -29,7 +29,7 @@ export abstract class Day03 {
     }
 
     static BothParts(): string {
-        return `Day 2 - 2023: \n\tPart 1: ${this.Part1()}\n\tPart 2: ${this.Part2()}`
+        return `Day 3 - 2023: \n\tPart 1: ${this.Part1()}\n\tPart 2: ${this.Part2()}`
     }
     private static createEngine(): Engine {
         const engine: Engine = new Engine()
