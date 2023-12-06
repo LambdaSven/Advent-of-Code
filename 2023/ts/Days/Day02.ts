@@ -33,7 +33,8 @@ export abstract class Day02 {
         start = performance.now();
         const ans2 = this.Part2();
         const t2 = (performance.now() - start).toPrecision(3);
-        return `Day 2 - 2023: \n\tPart 1: ${ans1} (${t1}ms)\n\tPart 2: ${ans2} (${t2}ms)`    }
+        return `Day 2 - 2023: \n\tPart 1: ${ans1} (${t1}ms)\n\tPart 2: ${ans2} (${t2}ms)`    
+    }
 
     static createBags() {
         const raw = removeEmptyLines(parseFileToStringArray('day02'));
