@@ -4,6 +4,7 @@ import { Day03 } from "./Days/Day03";
 import { Day04 } from "./Days/Day04";
 import { Day05 } from "./Days/Day05";
 import { Day06 } from "./Days/Day06";
+import { Day07 } from "./Days/Day07";
 
 //get day to run
 const arg: string | undefined = process.argv[2]
@@ -27,6 +28,9 @@ switch(arg) {
     case '6': 
         console.log(Day06.BothParts());
         break;
+    case '7':
+        console.log(Day07.BothParts());
+        break;
     case undefined: 
         console.log(Day01.BothParts())
         console.log(Day02.BothParts());
@@ -34,6 +38,7 @@ switch(arg) {
         console.log(Day04.BothParts());
         console.log(Day05.BothParts());
         console.log(Day06.BothParts());
+        console.log(Day07.BothParts());
         break;
     default:
         throw new Error(`Invalid arg ${arg}`);

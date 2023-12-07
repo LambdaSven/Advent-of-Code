@@ -9,7 +9,6 @@ export abstract class Day06 {
         for (const e of races) {
             waysToWin.push(this.solve(e.time, e.distance))
         }
-        console.log(waysToWin)
         return `${waysToWin.reduce((a, b) => a * b, 1)}`
     }
 
