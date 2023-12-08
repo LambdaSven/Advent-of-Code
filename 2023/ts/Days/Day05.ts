@@ -46,7 +46,7 @@ export abstract class Day05 {
 
         start = performance.now();
         //const ans2 = this.Part2();
-        const ans2 = `this takes too long to run every time - will be sped up in the future`
+        const ans2 = `this takes too long to run every time (~16 minutes) - will be sped up in the future`
         const t2 = (performance.now() - start).toPrecision(3);
         return `Day 5 - 2023: \n\tPart 1: ${ans1} (${t1}ms)\n\tPart 2: ${ans2} (${t2}ms)`    
     }
