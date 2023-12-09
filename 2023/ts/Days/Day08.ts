@@ -29,7 +29,8 @@ export abstract class Day08 {
     }
      //Notice - all paths will loop. 
     // There are no locations that aren't also in the input list
-    //So, find out how long it is until the first Z, and LCM all those bad boys
+    //So, find out how long it is until the first Z,
+    //  and LCM all those bad boys
     static Part2(): string {
         const input = removeEmptyLines(parseFileToStringArray('day08'));
         const nodes = this.inputToNodes(input);
