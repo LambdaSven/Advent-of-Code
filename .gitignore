@@ -5,6 +5,7 @@ node_modules/
 *.swp
 *.out
 Inputs/
+inputs/
 *.class
 bin/
 obj/
@@ -14,3 +15,4 @@ obj/
 *.vscode
 *.sln
 .DS_Store
+_build/
