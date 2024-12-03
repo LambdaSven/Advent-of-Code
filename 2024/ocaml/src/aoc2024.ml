@@ -6,4 +6,8 @@ print_endline @@ "\t Part 2 - " ^ Days.Day01.part2;
 
 print_endline @@ "Day 02\t Part 1 - " ^ Days.Day02.part1;
 
-print_endline @@ "\t Part 2 - " ^ Days.Day02.part2
+print_endline @@ "\t Part 2 - " ^ Days.Day02.part2;
+
+print_endline @@ "Day 03\t Part 1 - " ^ Days.Day03.part1;
+
+print_endline @@ "\t Part 2 - " ^ Days.Day03.part2
